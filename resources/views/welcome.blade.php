@@ -16,16 +16,16 @@
     <script type="text/javascript" src="Main-layout/js/jquery-1.8.3.min.js"></script>
     <script type="text/javascript" src="Main-layout/js/jquery-ui.min.js"></script>   
 
-    <link href="login/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="Form-login/css/style.css" rel="stylesheet" type="text/css" />
     <!-- /custom style sheet -->
     <!-- fontawesome css -->
-    <link href="login/css/fontawesome-all.css" rel="stylesheet" />
+    <link href="Form-login/css/fontawesome-all.css" rel="stylesheet" />
     <!-- /fontawesome css -->
     <!-- google fonts-->
     <link href="//fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
   </head>
-
+ 
   <body class="size-1280">
     <!-- HEADER -->
     <header role="banner" class="position-absolute">    
@@ -66,7 +66,7 @@
           <div class="top-nav right-menu">
              <ul class="top-ul chevron">
                 <li>
-                  <a>Menu4</a>
+                  <a href="##" >Menu4</a>
                   <ul>
                     <li><a>Product 1</a></li>
                     <li><a>Product 2</a></li>
@@ -99,20 +99,33 @@
   <div class="col" id="login" style="margin-top:10%;">
   <div class=" w3l-login-form">
         <!-- <h2>Login Here</h2> -->
-        <form action="#" method="POST">
+        <form method="POST" action="{{ route('login') }}">
+                        @csrf
 
             <div class="w3l-form-group">
                 <!-- <p>Username:</p> -->
                 <div class="group">
                     <i class="fas fa-user"></i>
-                    <input type="text" class="form-control" placeholder="Username" required="required" />
+                    <input style="background-color: #fff0;border-color:#fff0;color:#FFF;" placeholder="Username" id="Username" type="text" class="form-control{{ $errors->has('Username') ? ' is-invalid' : '' }}" name="Username" value="{{ old('Username') }}" required>
+                    
+                                @if ($errors->has('Username'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('Username') }}</strong>
+                                    </span>
+                                @endif
                 </div>
             </div>
             <div class="w3l-form-group">
                 <!-- <label>Password:</label> -->
                 <div class="group">
                     <i class="fas fa-unlock"></i>
-                    <input type="password" class="form-control" placeholder="Password" required="required" />
+                    <input style="background-color: #fff0;border-color:#fff0;color:#FFF;" placeholder="Password"  id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+
+                                @if ($errors->has('password'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                                @endif
                 </div>
             </div>
             <!-- <div class="forgot">

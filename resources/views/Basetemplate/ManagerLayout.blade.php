@@ -73,105 +73,30 @@
                     <li><a>Product 2</a></li>
                   </ul>
                 </li>
-                <!-- <li><a href="gallery.html">Gallery</a></li>
-                <li><a href="contact.html">Contact</a></li> -->
-                @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                    <li><a href="{{ url('/home') }}">Home</a></li>
-                    @else
-                    <li><a href="{{ route('login') }}">Login</a></li>
-                    <li><a href="{{ route('register') }}">Register</a></li>
-                    @endauth
-                </div>
-  @endif
+                <li><a href="services.html">Menu5</a></li>
+                <li>
+                  <a href="##" >{{ Auth::user()->Fname }}</a>
+                  <ul>
+                    <li><a>Product 1</a></li>
+                    <li> <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a></li>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                  </ul>
+                </li>
              </ul> 
           </div>
         </div>
       </nav>
     </header>
-    
     <!-- MAIN -->
     <main role="main">    
       <!-- Header -->
-      <header class="section-top-padding background-image text-center" style="background-image:url(Main-layout/img/BG/BG02-edit.jpg)">
-      <div class="container"  >
-  <div class="row">
-  <div class="col" id="login" style="margin-top:10%;">
-  <div class=" w3l-login-form">
-        <!-- <h2>Login Here</h2> -->
-        <form method="POST" action="{{ route('login') }}">
-                        @csrf
-
-            <div class="w3l-form-group">
-                <!-- <p>Username:</p> -->
-                <div class="group">
-                    <i class="fas fa-user"></i>
-                    <input style="background-color: #fff0;border-color:#fff0;color:#FFF;" placeholder="Username" id="Username" type="text" class="form-control{{ $errors->has('Username') ? ' is-invalid' : '' }}" name="Username" value="{{ old('Username') }}" required>
-                    
-                                @if ($errors->has('Username'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('Username') }}</strong>
-                                    </span>
-                                @endif
-                </div>
-            </div>
-            <div class="w3l-form-group">
-                <!-- <label>Password:</label> -->
-                <div class="group">
-                    <i class="fas fa-unlock"></i>
-                    <input style="background-color: #fff0;border-color:#fff0;color:#FFF;" placeholder="Password"  id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                </div>
-            </div>
-            <!-- <div class="forgot">
-                <a href="#">Forgot Password?</a>
-                <p><input type="checkbox">Remember Me</p>
-            </div> -->
-            <button type="submit">Login</button>
-        </form>
-        <!-- <p class=" w3l-register-p">Don't have an account?<a href="#" class="register"> Register</a></p> -->
-    </div>
-    </div>
-    <div id="intro" class="col-8">
-        <h1 class="text-extra-thin text-white text-s-size-30 text-m-size-40 text-size-50 text-line-height-1 margin-bottom-40 margin-top-130">
-          Energy Monitoring System
-        </h1>
-        <p class="text-white">EMS is a system to monitor the amount of electrical energy used in buildings. The goal is to reduce unnecessary energy consumption.</p>
-        <i class="slow icon-sli-arrow-down text-white margin-top-20 text-size-16"></i>
-        <!-- Image -->
-        <img class="margin-top-20 center" style="width:70%;" src="Main-layout/img/app2.png" alt="">
-        <!-- <img class="margin-top-20 center"  src="Main-layout/img/app.png" alt=""> -->
-        
-        <!-- dark full width arrow object -->
-        
-        </div>
-  </div>
-  <img class="arrow-object" src="Main-layout/img/arrow-object-dark.svg" alt="">
-      </header>
-      
-      <!-- Section 1 -->
-      <section class="section-small-padding background-dark text-center">      
-        <div class="line">
-          <div class="m-10 l-6 xl-4 center">
-            <div class="margin">
-              <!-- <a class="s-12 m-6 margin-s-bottom" href="/">
-                <img class="full-img right" src="Main-layout/img/google-play.svg" alt="">
-              </a>
-              <a class="s-12 m-6" href="/">
-                <img class="full-img" src="Main-layout/img/app-store.svg" alt="">
-              </a> -->
-              <p class="text-white">EMS is a system to monitor the amount of electrical energy used in buildings. The goal is to reduce unnecessary energy consumption.</p>
-            </div>
-          </div>                                                                                               
-        </div>       
-      </section>
-  
+      @yield('content')
     </main>
 
     <!-- FOOTER -->

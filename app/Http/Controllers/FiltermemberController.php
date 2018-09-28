@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use App\User;
+use Yajra\DataTables\Facades\Datatables;
+use App\client_company;
 class FiltermemberController extends Controller
 {
     public function Index()
@@ -21,5 +23,10 @@ class FiltermemberController extends Controller
         {
             return view('Content\User\Userhome');
         }
+    }
+
+    public function getcompany()
+    {
+            return Datatables::eloquent(client_company::query())->make(true);
     }
 }

@@ -20,5 +20,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 // Fillter all user this login for navigate to webpage
 Route::get('/filtermember', 'FiltermemberController@index');
+Route::get('/getcompany', 'FiltermemberController@getcompany');
+
 
 

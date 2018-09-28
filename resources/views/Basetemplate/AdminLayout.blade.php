@@ -166,13 +166,13 @@
 <!-- Le javascript
 ================================================== --> 
 <!-- Placed at the end of the document so the pages load faster --> 
-<!-- <script src="Admin-layout/js/jquery-1.7.2.min.js"></script> 
+<script src="Admin-layout/js/jquery-1.7.2.min.js"></script> 
 <script src="Admin-layout/js/excanvas.min.js"></script> 
 <script src="Admin-layout/js/chart.min.js" type="text/javascript"></script> 
 <script src="Admin-layout/js/bootstrap.js"></script> 
 <script language="javascript" type="text/javascript" src="Admin-layout/js/full-calendar/fullcalendar.min.js"></script>
  
-<script src="Admin-layout/js/base.js"></script>  -->
+<script src="Admin-layout/js/base.js"></script> 
 
 </body>
 </html>

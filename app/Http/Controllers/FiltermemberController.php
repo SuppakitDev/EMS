@@ -5,15 +5,22 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use App\User;
-use Yajra\DataTables\Facades\Datatables;
+
 use App\client_company;
+use DB;
 class FiltermemberController extends Controller
 {
     public function Index()
     {
         if(Auth::user()->Status == "ADMIN")
         {
-            return view('Content\Admin\Adminhome');
+            $company = DB::table('client_company')
+            ->where('ID','!=',0)
+            ->get();
+            return view('Content\Admin\Adminhome',
+            [
+                'company' => $company,
+            ]);
         }
         elseif(Auth::user()->Status == "MANAGER")
         {
@@ -23,10 +30,5 @@ class FiltermemberController extends Controller
         {
             return view('Content\User\Userhome');
         }
-    }
-
-    public function getcompany()
-    {
-            return Datatables::eloquent(client_company::query())->make(true);
     }
 }

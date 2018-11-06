@@ -67,12 +67,12 @@
   <div class="subnavbar-inner">
     <div class="container">
       <ul class="mainnav">
-        <li class="active"><a href="index.html"><i class="icon-dashboard"></i><span>Dashboard</span> </a> </li>
-        <li><a href="reports.html"><i class="icon-list-alt"></i><span>Reports</span> </a> </li>
-        <li><a href="guidely.html"><i class="icon-facetime-video"></i><span>App Tour</span> </a></li>
-        <li><a href="charts.html"><i class="icon-bar-chart"></i><span>Charts</span> </a> </li>
-        <li><a href="shortcodes.html"><i class="icon-code"></i><span>Shortcodes</span> </a> </li>
-        <li class="dropdown"><a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-long-arrow-down"></i><span>Drops</span> <b class="caret"></b></a>
+        <li class="active"><a href="/filtermember"><i class="icon-dashboard"></i><span>Dashboard</span> </a> </li>
+        <li class="active"><a href="/admintheme"><i class="icon-list-alt"></i><span>Admin Theme</span> </a> </li>
+        <li class="active"><a href="/company"><i class="icon-home"></i><span>Company</span> </a></li>
+        <li class="active"><a href="http://127.0.0.1/phpmyadmin/db_structure.php?server=1&db=ems"><i class="icon-sitemap"></i><span>Database</span> </a> </li>
+        <li class="active"><a href="/calendar"><i class="icon-calendar"></i><span>Calenda</span> </a> </li>
+        <!-- <li class="dropdown"><a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-long-arrow-down"></i><span>Drops</span> <b class="caret"></b></a>
           <ul class="dropdown-menu">
             <li><a href="icons.html">Icons</a></li>
             <li><a href="faq.html">FAQ</a></li>
@@ -81,7 +81,7 @@
             <li><a href="signup.html">Signup</a></li>
             <li><a href="error.html">404</a></li>
           </ul>
-        </li>
+        </li> -->
       </ul>
     </div> 
     <!-- /container --> 
@@ -96,7 +96,7 @@
 <!-- /main -->
 <div class="extra">
   <div class="extra-inner">
-    <div class="container">
+    <div class="container" >
       <div class="row">
                     <div class="span3">
                         <h4>
@@ -173,6 +173,46 @@
 <script language="javascript" type="text/javascript" src="Admin-layout/js/full-calendar/fullcalendar.min.js"></script>
  
 <script src="Admin-layout/js/base.js"></script> 
+<script>     
+  
 
+$(document).ready(function() {
+var date = new Date();
+var d = date.getDate();
+var m = date.getMonth();
+var y = date.getFullYear();
+var calendar = $('#calendar').fullCalendar({
+  header: {
+    left: 'prev,next today',
+    center: 'title',
+    right: 'month,agendaWeek,agendaDay'
+  },
+  selectable: true,
+  selectHelper: true,
+  select: function(start, end, allDay) {
+    var title = prompt('Event Title:');
+    if (title) {
+      calendar.fullCalendar('renderEvent',
+        {
+          title: title,
+          start: start,
+          end: end,
+          allDay: allDay
+        },
+        true // make the event "stick"
+      );
+    }
+    calendar.fullCalendar('unselect');
+  },
+  editable: true,
+  events: [
+    {
+      title: 'TEST Event',
+      start: new Date(y, m, 1)
+    }
+  ]
+});
+});
+</script>
 </body>
 </html>

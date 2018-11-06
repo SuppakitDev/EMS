@@ -16,6 +16,8 @@ class CreateClientCompanyTable extends Migration
         Schema::create('client_company', function (Blueprint $table) {
             $table->increments('id');
             $table->string('C_name',100);
+            $table->float('lat');
+            $table->float('lon');
             $table->string('Display_list');
             $table->string('Tel',10);
             $table->integer('Money_rate');

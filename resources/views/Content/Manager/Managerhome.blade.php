@@ -1,5 +1,18 @@
 @extends('Basetemplate.ManagerLayout')
 <link href="Card/material-dashboard.css" rel="stylesheet" />
+<!-- For Chart Power Overview  -->
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<!-- <script src="http://code.jquery.com/jquery-1.9.1.js"></script> -->
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="http://code.highcharts.com/highcharts-more.js"></script>
+<!-- <script
+  src="https://code.jquery.com/jquery-1.9.1.js"
+  integrity="sha256-e9gNBsAcA0DBuRWbm0oZfbiCyhjLrI6bmqAl5o+ZjUA="
+  crossorigin="anonymous"></script>
+  <script src="https://rawgit.com/morr/jquery.appear/master/jquery.appear.js"></script> -->
+<!-- For Chart Power Overview  -->
 @section('content')
 
 <header class="section background-image text-center" style="background-image:url(Main-layout/img/BG02-edit.jpg)">
@@ -11,7 +24,7 @@
           <!-- white full width arrow object -->
           <img class="arrow-object" src="Main-layout/img/arrow-object-white.svg" alt="">
         </header>
-        <div class="row" style="margin-top:2%;margin-left:4%;margin-right:4%">
+        <div class="row" style="margin-top:4%;margin-left:4%;margin-right:4%;">
   <div class="col-sm-4">
   <div style="border: 2px solid #1a1919a6;" class="card card-stats ">
                 <div class="card-header card-header-success card-header-icon">
@@ -63,75 +76,202 @@
 
         
     <!-- Section 2 -->
-    <section class="section-top-padding background-white">
+    <section style="width:100%;margin-top:3%;">
         <div class="line text-center">
-          <i class="icon-sli-heart text-primary text-size-40"></i>
-          <h2 class="text-dark text-size-50 text-m-size-40">Template <b>Features</b></h2>
-          <hr class="break background-primary break-small break-center margin-bottom-50">
+          <i class="icon-sli-screen-desktop text-primary text-size-30"></i>
+          <h2 class="text-dark text-size-30 text-m-size-40">Company Name <b>Overview</b></h2>
+          <!-- <hr class="break background-primary break-small break-center margin-bottom-10"> -->
+          <div class="btn-group btn-group-toggle" data-toggle="buttons">
+               
+                    <button onclick="Daily()" type="button" class="btn btn-info active" style="margin-right:2px;" >Daily</button>
+
+                    <button onclick="Monthly()" type="button" class="btn btn-danger" style="margin-right:2px;" >Monthly</button>
+                
+                    <button onclick="Yearly()" type="button" class="btn btn-primary" style="margin-right:2px;">Yearly</button>
+                
+                    <button data-toggle="modal" data-target="#CustomdateOverview" type="button" class="btn btn-success">Custom</button>
+
+            </div>
         </div>
-        <div class="line">
-          <div class="margin2x">
-            <div class="s-12 m-6 l-4 margin-bottom-60">
-              <div class="float-left">
-                <i class="icon-sli-equalizer text-primary text-size-40 text-line-height-1"></i>
+
+         <!-- Modal Costom date -->
+         <div class="modal fade" id="CustomdateOverview" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">CustomdateOverview</h5>
+                <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"> -->
+                  <!-- <span aria-hidden="true">&times;</span> -->
+                <!-- </button> -->
               </div>
-              <div class="margin-left-60">
-                <h3 class="text-strong text-size-20 text-line-height-1 margin-bottom-20">Unlimited Color Variants</h3>
-                <p>Hendrerit in vulputate duis autem vel eum iriure dolor in velit esse molestie consequat, vel illum dolore nulla facilisis</p>
-                <a class="text-more-info text-primary" href="/">Read more</a>                
+              <div class="modal-body">
+                ...
               </div>
-            </div>
-            <div class="s-12 m-6 l-4 margin-bottom-60">
-              <div class="float-left">
-                <i class="icon-sli-layers text-primary text-size-40 text-line-height-1"></i>
-              </div>
-              <div class="margin-left-60">
-                <h3 class="text-strong text-size-20 text-line-height-1 margin-bottom-20">Many Reusable Elements</h3>
-                <p>Hendrerit in vulputate duis autem vel eum iriure dolor in velit esse molestie consequat, vel illum dolore nulla facilisis</p>
-                <a class="text-more-info text-primary" href="/">Read more</a>                
-              </div>
-            </div>
-            <div class="s-12 m-6 l-4 margin-bottom-60">
-              <div class="float-left">
-                <i class="icon-sli-share text-primary text-size-40 text-line-height-1"></i>
-              </div>
-              <div class="margin-left-60">
-                <h3 class="text-strong text-size-20 text-line-height-1 margin-bottom-20">Clean Modern Code</h3>
-                <p>Hendrerit in vulputate duis autem vel eum iriure dolor in velit esse molestie consequat, vel illum dolore nulla facilisis</p>
-                <a class="text-more-info text-primary" href="/">Read more</a>                 
-              </div>
-            </div>
-            <div class="s-12 m-6 l-4 margin-m-bottom-60">
-              <div class="float-left">
-                <i class="icon-sli-paper-plane text-primary text-size-40 text-line-height-1"></i>
-              </div>
-              <div class="margin-left-60">
-                <h3 class="text-strong text-size-20 text-line-height-1 margin-bottom-20">Parallax Background</h3>
-                <p>Hendrerit in vulputate duis autem vel eum iriure dolor in velit esse molestie consequat, vel illum dolore nulla facilisis</p>
-                <a class="text-more-info text-primary" href="/">Read more</a>                 
-              </div>
-            </div>
-            <div class="s-12 m-6 l-4 margin-m-bottom-60">
-              <div class="float-left">
-                <i class="icon-sli-diamond text-primary text-size-40 text-line-height-1"></i>
-              </div>
-              <div class="margin-left-60">
-                <h3 class="text-strong text-size-20 text-line-height-1 margin-bottom-20">Responsive Layoute</h3>
-                <p>Hendrerit in vulputate duis autem vel eum iriure dolor in velit esse molestie consequat, vel illum dolore nulla facilisis</p>
-                <a class="text-more-info text-primary" href="/">Read more</a>                 
-              </div>
-            </div>
-            <div class="s-12 m-6 l-4 margin-m-bottom-60">
-              <div class="float-left">
-                <i class="icon-sli-rocket text-primary text-size-40 text-line-height-1"></i>
-              </div>
-              <div class="margin-left-60">
-                <h3 class="text-strong text-size-20 text-line-height-1 margin-bottom-20">And many more...</h3>
-                <p>Hendrerit in vulputate duis autem vel eum iriure dolor in velit esse molestie consequat, vel illum dolore nulla facilisis</p>
-                <a class="text-more-info text-primary" href="/">Read more</a>                 
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-success">Save changes</button>
               </div>
             </div>
           </div>
         </div>
+
+        <div class="line">
+     
+                <!-- Graph Power -->
+                  <div class="Chart1">
+                      
+                  </div>
+              
+            
+        </div>
       </section>
+
+        <!-- Section 3 -->
+    <section style="width:100%;padding-top:45px;">
+        <div class="line text-center">
+          <i class="icon-sli-chart text-primary text-size-40"></i>
+          <h2 class="text-dark text-size-30 text-m-size-40"><b>Energy This day VS Energy Yesterday </b></h2>
+          <!-- <hr class="break background-primary break-small break-center margin-bottom-45"> -->
+        </div>
+        <div class="line">
+        <div class="row" style="margin-top:2%;margin-left:4%;margin-right:4%">
+            <div class="col-md-12">
+              <div class="float-left">
+                <i class="icon-sli-graph text-primary text-size-30 text-line-height-1"></i>
+              </div>
+              <div >
+                <h3 class="text-strong text-size-20 text-line-height-1 margin-bottom-40">Power of Thai-Tabuchi Electric</h3>
+                <!-- Graph Power -->
+                <div id="container3" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+              </div>
+            </div>
+
+            </div>
+            
+        </div>
+      </section>
+      
+      
+      
+       
+     
+      <!-- For Column Chart -->
+        <script>
+       
+Highcharts.chart('container3', {
+
+chart: {
+    type: 'column'
+},
+
+title: {
+    text: 'Energy This day VS Energy yesterday'
+},
+
+xAxis: {
+    categories: ['Apples', 'Oranges', 'Pears', 'Grapes', 'Bananas']
+},
+
+yAxis: {
+    allowDecimals: false,
+    min: 0,
+    title: {
+        text: 'Number of fruits'
+    }
+},
+
+tooltip: {
+    formatter: function () {
+        return '<b>' + this.x + '</b><br/>' +
+            this.series.name + ': ' + this.y + '<br/>' +
+            'Total: ' + this.point.stackTotal;
+    }
+},
+
+plotOptions: {
+    column: {
+        stacking: 'normal'
+    }
+},
+
+series: [{
+    name: 'John',
+    data: [5, 3, 4, 7, 2],
+    stack: 'male'
+}, {
+    name: 'Joe',
+    data: [3, 4, 4, 2, 5],
+    stack: 'male'
+}, {
+    name: 'Jane',
+    data: [2, 5, 6, 2, 1],
+    stack: 'female'
+}, {
+    name: 'Janet',
+    data: [3, 0, 4, 4, 3],
+    stack: 'female'
+}]
+});
+        </script>
+      <!-- For Column Chart -->
+
+        <script>
+          //  <!-- Ajax change Content Zone -->
+
+              $( document ).ready(function() {
+                $.ajax(
+                    {
+                        url: "/getEmsOverviewDaily",
+                        type: 'GET',
+                    }).done( 
+                        function(data) 
+                        {
+                            $('.Chart1').html(data.html);
+                        }
+                    );
+                    
+              });
+              function Daily(){
+                    $.ajax(
+                    {
+                        url: "/getEmsOverviewDaily",
+                        type: 'GET',
+                    }).done( 
+                        function(data) 
+                        {
+                            $('.Chart1').html(data.html);
+                        }
+                    );
+                    }
+
+              
+              function Monthly(){
+                    $.ajax(
+                    {
+                        url: "/getEmsOverviewMonthly",
+                        type: 'GET',
+                    }).done( 
+                        function(data) 
+                        {
+                            $('.Chart1').html(data.html);
+                        }
+                    );
+                    }
+
+              function Yearly(){
+                    $.ajax(
+                    {
+                        url: "/getEmsOverviewYearly",
+                        type: 'GET',
+                    }).done( 
+                        function(data) 
+                        {
+                            $('.Chart1').html(data.html);
+                        }
+                    );
+                    }
+          // <!-- Ajax change Content Zone -->
+          </script>
+
+          
 @endsection

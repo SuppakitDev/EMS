@@ -19,7 +19,7 @@
 <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>   
 </head>
 <body>
 <div class="navbar navbar-fixed-top">
@@ -166,6 +166,7 @@
 <!-- Le javascript
 ================================================== --> 
 <!-- Placed at the end of the document so the pages load faster --> 
+@include('sweet::alert')
 <script src="Admin-layout/js/jquery-1.7.2.min.js"></script> 
 <script src="Admin-layout/js/excanvas.min.js"></script> 
 <script src="Admin-layout/js/chart.min.js" type="text/javascript"></script> 

@@ -25,6 +25,7 @@
     <!-- google fonts-->
     <link href="//fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>   
   </head>
  
   <body class="size-1280">
@@ -98,7 +99,7 @@
                 <li>
                   <a href="##" >{{ Auth::user()->Fname }}</a>
                   <ul>
-                    <li><a>Profile</a></li>
+                    <li><a data-toggle="modal" data-target="#exampleModal" >Profile</a></li>
                     <li> <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -245,12 +246,178 @@
         </div>  
       </section>
     </footer>
+
+    <!-- Modal Edit profile -->
+    <div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Profile Editor {{ Auth::user()->Username}}</h5>
+           
+          </div>
+          <div class="modal-body">
+          <div class="container">
+    
+	<div class="row">
+      <!-- left column -->
+      <div class="col-md-4">
+        <div class="text-center">
+        <?= Form::open(array('url'=> 'Profile/'.Auth::user()->id, 'method' => 'POST','files' => true)) ?>
+        {{ method_field('PUT') }}
+          {{ csrf_field() }}
+          <img src="/Img/profiles/resize/{{ Auth::user()->image}}"  style="border-radius: 50%;margin:auto;width:60%;" >
+
+          <br>
+        
+          <input type="file" name="image" >
+        </div>
+      </div>
+      
+      <!-- edit form column -->
+      <div class="col-md-8 personal-info"  >
+        <h3>Personal info</h3>
+        
+       
+        <div class="row">
+            <div class="form-group">
+              <label class="col-lg-6 control-label">First name:</label>
+              <div class="col-lg-12">
+                <input class="form-control" type="text" name="Fname" value="{{ Auth::user()->Fname}}">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-lg-6 control-label">Last name:</label>
+              <div class="col-lg-12">
+                <input class="form-control" type="text" name="Lname" value="{{ Auth::user()->Lname}}">
+              </div>
+            </div>
+        </div>
+        <div class="row">
+        <div class="form-group">
+            <label class="col-md-6 control-label">Username:</label>
+            <div class="col-md-12">
+              <input class="form-control" type="text" name="Username" value="{{ Auth::user()->Username}}">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-6 control-label">Email:</label>
+            <div class="col-lg-12">
+              <input class="form-control" type="text" name="email" value="{{ Auth::user()->email}}">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group">
+            <label class="col-md-6 control-label">Telephone:</label>
+            <div class="col-md-12">
+              <input class="form-control" type="text" name="Tel"  value="{{ Auth::user()->Tel}}">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group">
+            <!-- <label class="col-md-6 control-label">Password:</label> -->
+            <div class="col-md-12">
+              <!-- <input  class="form-control" type="password" value="11111122333"> -->
+              <input type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal2" value="Changes password">
+            </div>
+          </div>
+        
+          </div>
+          <div class="form-group">
+            @if (count($errors) > 0)
+            <script>
+            $(document).ready(function()
+              {
+                $("#exampleModal").modal();
+              });
+            </script>
+            <div class="alert alert-warning">
+                <ul>
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+                </ul>
+            </div>
+            @endif
+            <div class="col-md-12">
+              <input type="submit" class="btn btn-primary" value="Save Changes">
+              <span></span>
+              <input type="reset" class="btn btn-default" data-dismiss="modal" value="Cancel">
+            </div>
+          </div>
+          {!! Form::close() !!}
+      </div>
+  </div>
+</div>
+
+          </div>
+       
+        </div>
+      </div>
+    </div>
+ <!-- Modal Edit profile -->
+
+ <!-- Modal change password -->
+<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Change Password</h5>
+      </div>
+      <div class="modal-body">
+      @if (count($errors) > 0)
+      <div class="alert alert-warning">
+      <ul>
+      @foreach ($errors->all() as $error)
+      <li>{{ $error }}</li>
+      @endforeach
+      </ul>
+      </div>
+      @endif
+      <?= Form::open(array('url'=> 'Changepass/'.Auth::user()->id, 'method' => 'PUT','files' => true)) ?>
+          {{ csrf_field() }}
+        <div class="form-group">
+            <label class="col-md-6 control-label">Current Password:</label>
+            <div class="col-md-12">
+              <input class="form-control" name="current-password" type="password" value="">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-12 control-label">Password:</label>
+            <div class="col-md-12">
+              <input class="form-control" type="password" name="password" value="">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-12 control-label">Confirm password:</label>
+            <div class="col-md-12">
+              <input class="form-control" type="password" name="password_confirmation" value="">
+            </div>
+          </div>
+      
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Change password</button>
+      </div>
+         {!! Form::close() !!}
+    </div>
+  </div>
+
+</div>
+ <!-- Modal change password -->
+ @include('sweet::alert')
     <script type="text/javascript" src="Main-layout/js/responsee.js"></script>
     <script type="text/javascript" src="Main-layout/owl-carousel/owl.carousel.js"></script>
     <script type="text/javascript" src="Main-layout/js/template-scripts.js"></script> 
-<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
 
-  </body>
+</body>
 </html>
 

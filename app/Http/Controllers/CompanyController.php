@@ -51,7 +51,7 @@ class CompanyController extends Controller
         $company->Money_rate = $request->Money_rate;
         $company->save(); 
         
-        // alert()->success('Success This Company Added!!', 'Good bye!');
+        alert()->success('Success This Company Added!!', 'Complete!');
         return redirect()->Back();
     }
 
@@ -93,7 +93,8 @@ class CompanyController extends Controller
         $company->Display_list = $request->Display_list;
         $company->Tel = $request->Tel;
         $company->Money_rate = $request->Money_rate;
-        $company->save();            
+        $company->save();
+        alert()->success('This Company Changed.', 'Success!');
         return redirect()->Back();
     }
 
@@ -107,7 +108,7 @@ class CompanyController extends Controller
     {
         $company = client_company::find($id);
         $company->delete();
-                    
+        Alert::warning('This Company Removed.', 'Complete!');      
         return redirect()->Back();
     }
 
@@ -158,6 +159,7 @@ class CompanyController extends Controller
         $Displaylist = implode(",",$Displaylist);
         $building->Display_list =  $Displaylist;
         $building->save();
+        alert()->success('This Building Added.', 'Success!');
         return redirect()->Back(); 
     }
 
@@ -197,6 +199,7 @@ class CompanyController extends Controller
         $department->B_ID =  $B_ID;
         $department->DIS_number =  $Displaylist;
         $department->save();
+        alert()->success('This Department Added.', 'Success!');
         return redirect()->Back(); 
     }
 
@@ -205,7 +208,7 @@ class CompanyController extends Controller
         $ID = Input::get('ID');
         $building = building::find($ID);
         $building->delete();
-                    
+        Alert::warning('This Building Removed.', 'Complete!');              
         return redirect()->Back();
     }
 
@@ -215,7 +218,7 @@ class CompanyController extends Controller
         $ID = Input::get('ID');
         $department = department::find($ID);
         $department->delete();
-                    
+        Alert::warning('This Deoartment Removed.', 'Complete!');                       
         return redirect()->Back();
     }
 
@@ -230,7 +233,8 @@ class CompanyController extends Controller
         $Displaylistresult = implode(",",$Displaylist);
         $building->Display_list = $Displaylistresult;
         $building->C_ID = $C_ID;
-        $building->save();            
+        $building->save();    
+        alert()->success('This Building Changed.', 'Success!');
         return redirect()->Back();
 
         
@@ -250,7 +254,8 @@ class CompanyController extends Controller
         $department->DIS_number = $DIS_number;
         $department->B_ID = $B_ID;
         $department->C_ID = $C_ID;
-        $department->save();            
+        $department->save();
+        alert()->success('This Department Changed.', 'Success!');
         return redirect()->Back();
 
 
@@ -280,7 +285,7 @@ class CompanyController extends Controller
         $ID = Input::get('ID');
         $users = User::find($ID);
         $users->delete();
-                    
+        Alert::warning('This Member Removed.', 'Complete!');
         return redirect()->Back();
     }
 
@@ -306,6 +311,7 @@ class CompanyController extends Controller
         DB::table('users')
             ->where('id', $ID)
             ->update($updateDetails);
+            Alert::success('This Memeber Changed.', 'Complete!');  
             return redirect()->Back();
 
             // return $Username;

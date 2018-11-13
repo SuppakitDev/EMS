@@ -59,5 +59,14 @@ Route::get('/RemoveMember','CompanyController@RemoveMember');
 
 Route::post('/UpdateMember','CompanyController@UpdateMember');
 
+Route::resource('Profile','ProfileController');
+Route::resource('Changepass','ChangepasswordController');
+
+Route::get('/EmsInsert','EMSAPIController@EmsInsert');
+Route::get('/AutoEmsInsertDis01','EMSAPIController@AutoEmsInsertDis01');
+Route::get('/AutoEmsInsertDis02','EMSAPIController@AutoEmsInsertDis02');
 
 
+Route::get('/TestAutoinsertdb', function () {
+    return view('TestAutoinsertdb');
+});

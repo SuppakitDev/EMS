@@ -47,15 +47,15 @@
           <!-- left menu items -->
           <div class="top-nav left-menu">
              <ul class="right top-ul chevron">
-                <li><a href="index.html">Menu1</a></li>
+                <!-- <li><a href="index.html">Menu1</a></li>
                 <li><a href="about-us.html">Menu2</a></li>
-                <li><a href="services.html">Menu3</a></li>
+                <li><a href="services.html">Menu3</a></li> -->
              </ul>
           </div>
           
           <!-- logo -->
           <ul class="logo-menu">
-            <a href="index.html" class="logo">
+            <a href="/filtermember" class="logo">
               <!-- Logo White Version -->
               <img class="logo-white" src="Main-layout/img/EMS3.png" alt="">
               <!-- Logo Dark Version -->
@@ -66,25 +66,25 @@
           <!-- right menu items -->
           <div class="top-nav right-menu">
              <ul class="top-ul chevron">
-                <li>
+                <!-- <li>
                   <a href="##" >Menu4</a>
                   <ul>
                     <li><a>Product 1</a></li>
                     <li><a>Product 2</a></li>
                   </ul>
-                </li>
+                </li> -->
                 <!-- <li><a href="gallery.html">Gallery</a></li>
                 <li><a href="contact.html">Contact</a></li> -->
                 @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                    <li><a href="{{ url('/home') }}">Home</a></li>
+                    <!-- <li><a href="{{ url('/home') }}">Home</a></li> -->
                     @else
-                    <li><a href="{{ route('login') }}">Login</a></li>
-                    <li><a href="{{ route('register') }}">Register</a></li>
+                    <!-- <li><a href="{{ route('login') }}">Login</a></li>
+                    <li><a href="{{ route('register') }}">Register</a></li> -->
                     @endauth
                 </div>
-  @endif
+                @endif
              </ul> 
           </div>
         </div>
@@ -100,6 +100,12 @@
   <div class="col" id="login" style="margin-top:10%;">
   <div class=" w3l-login-form">
         <!-- <h2>Login Here</h2> -->
+        @if (Route::has('login'))
+          @auth
+            <form method="get" action="/filtermember">
+                <button style="background-color:#F26C66;" type="submit">Go to Dashboard!!</button>
+            </form>
+          @else
         <form method="POST" action="{{ route('login') }}">
                         @csrf
 
@@ -135,9 +141,11 @@
             </div> -->
             <button type="submit">Login</button>
         </form>
+        @endauth
         <!-- <p class=" w3l-register-p">Don't have an account?<a href="#" class="register"> Register</a></p> -->
     </div>
     </div>
+    @endif
     <div id="intro" class="col-8">
         <h1 class="text-extra-thin text-white text-s-size-30 text-m-size-40 text-size-50 text-line-height-1 margin-bottom-40 margin-top-130">
           Energy Monitoring System

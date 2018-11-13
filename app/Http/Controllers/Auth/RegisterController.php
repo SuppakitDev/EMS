@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Request;
 use Image;
 use File;
+use Alert;
 class RegisterController extends Controller
 {
     /*
@@ -33,7 +34,7 @@ class RegisterController extends Controller
      */
     protected function redirectTo()
     {
-        // alert()->success('Success', 'Add User Complete!!'); 
+        alert()->success('Success', 'Add User Complete!!'); 
         return url()->previous();
     }
 

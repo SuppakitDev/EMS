@@ -148,6 +148,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
 
         Yajra\DataTables\DataTablesServiceProvider::class,
+        'Intervention\Image\ImageServiceProvider',
         
 
         /*
@@ -164,6 +165,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         'Collective\Html\HtmlServiceProvider',
         UxWeb\SweetAlert\SweetAlertServiceProvider::class,
+
 
 
     ],
@@ -217,6 +219,7 @@ return [
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
         'Form' => 'Collective\Html\FormFacade',
         'Html' => 'Collective\Html\HtmlFacade',
+        'Image' => 'Intervention\Image\Facades\Image',
         'Alert' => UxWeb\SweetAlert\SweetAlert::class,
 
         

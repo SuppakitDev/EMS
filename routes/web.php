@@ -65,8 +65,22 @@ Route::resource('Changepass','ChangepasswordController');
 Route::get('/EmsInsert','EMSAPIController@EmsInsert');
 Route::get('/AutoEmsInsertDis01','EMSAPIController@AutoEmsInsertDis01');
 Route::get('/AutoEmsInsertDis02','EMSAPIController@AutoEmsInsertDis02');
+Route::get('/testquery','FiltermemberController@testquery');
+
+
 
 
 Route::get('/TestAutoinsertdb', function () {
     return view('TestAutoinsertdb');
 });
+
+
+// Home Content Response
+Route::get('/EMSGettotalenergy','HomeContentController@EMSGettotalenergy');
+Route::get('/EMSGetrealtimepower','HomeContentController@EMSGetrealtimepower');
+Route::get('/EMSGetlastPowerrealtimeDaily','HomeContentController@EMSGetlastPowerrealtimeDaily');
+Route::get('/EMSGetDepartmentConpare','HomeContentController@EMSGetDepartmentConpare');
+Route::get('/EMSGetThisdayenergyOverview','HomeContentController@EMSGetThisdayenergyOverview');
+Route::get('/EMSGetlastupdatetime','HomeContentController@EMSGetlastupdatetime');
+Route::get('/EMSGetComparewithyesterday','HomeContentController@EMSGetComparewithyesterday');
+

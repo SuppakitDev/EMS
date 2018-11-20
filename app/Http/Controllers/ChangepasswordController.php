@@ -83,7 +83,8 @@ class ChangepasswordController extends Controller
              $obj_user->password = Hash::make($data['password']);;
              $obj_user->save();
              alert()->success('Success', 'Your Password Changed!! ');
-             return redirect('filtermember')->with('message', 'Login Failed');
+            //  return redirect('filtermember')->with('message', 'Login Failed');
+             return back();
             //  return redirect('filtermember');
         }
     }

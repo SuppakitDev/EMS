@@ -95,7 +95,7 @@ class ProfileController extends Controller
         // $newpass = bcrypt($request->pass);
         // $users->update(['password' =>$newpass]);
         alert()->success('You Profile have been Changed.', 'Complete!');
-        return redirect('filtermember');
+        return back();
     }
 
     /**

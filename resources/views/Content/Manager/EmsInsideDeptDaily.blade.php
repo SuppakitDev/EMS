@@ -1,5 +1,4 @@
 <!-- For Chart Power Overview -->
-
 <input type="date" style="margin-left:80%;width:20%;" name="Dailyselect" id="Dailyselect">
 <div id="container" style="width:100%;height:55%;"></div>
 <!-- <input data-provide="datepicker"> -->
@@ -69,7 +68,7 @@
               });
         </script>
       <!-- For Chart Power Overview -->
-     <!-- Script when Change Input date -->
+      <!-- Script when Change Input date -->
      <script>
             $('#Dailyselect').on('change',function(e){
                 Highcharts.chart('container', {

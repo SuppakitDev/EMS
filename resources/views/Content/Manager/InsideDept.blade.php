@@ -23,7 +23,7 @@
     <section style="width:100%;margin-top:0%;">
         <div class="line text-center">
           <!-- <i class="icon-sli-screen-desktop text-primary text-size-30"></i> -->
-          <h2 class="text-dark text-size-30 text-m-size-40">Company Name <b>Overview</b></h2>
+          <h2 class="text-dark text-size-30 text-m-size-40"><b>Detail of {{$Deptdetailname}}</b></h2>
           <!-- <hr class="break background-primary break-small break-center margin-bottom-10"> -->
           <div class="btn-group btn-group-toggle" data-toggle="buttons">
                

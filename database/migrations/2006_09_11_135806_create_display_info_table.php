@@ -21,9 +21,13 @@ class CreateDisplayInfoTable extends Migration
             $table->integer('B_ID')->unsigned();
             $table->foreign('B_ID')->references('id')->on('building');
             $table->string('Dis_Number',10);            
-            $table->string('Model',24);            
-            $table->string('Manufacturing_Date',24);            
-            $table->string('Firmware_Version',24);            
+            $table->string('DisModel',24);            
+            $table->string('DisManufacturing_Date',24);            
+            $table->string('DisFirmware_Version',24);
+            $table->string('Ct_SerialNo',24);
+            $table->string('CtModel',24);            
+            $table->string('CtManufacturing_Date',24);            
+            $table->string('CtFirmware_Version',24);      
             $table->timestamps();
         });
     }

@@ -83,4 +83,21 @@ Route::get('/EMSGetDepartmentConpare','HomeContentController@EMSGetDepartmentCon
 Route::get('/EMSGetThisdayenergyOverview','HomeContentController@EMSGetThisdayenergyOverview');
 Route::get('/EMSGetlastupdatetime','HomeContentController@EMSGetlastupdatetime');
 Route::get('/EMSGetComparewithyesterday','HomeContentController@EMSGetComparewithyesterday');
+Route::get('/EmsOverviewCustomDate','HomeContentController@EmsOverviewCustomDate');
+Route::get('/EmsgetOverviewPowerCustomDate','HomeContentController@EmsgetOverviewPowerCustomDate');
+Route::get('/EmsgetOverviewEnergyCustomDate','HomeContentController@EmsgetOverviewEnergyCustomDate');
+
+// Monthly Zone
+Route::get('/MonthlyEnergychart','EMSMonthlyController@MonthlyEnergychart');
+Route::get('/EMSGetComparewithlastymonth','EMSMonthlyController@EMSGetComparewithlastymonth');
+Route::get('/EMSGetDepartmentConparethisMonth','EMSMonthlyController@EMSGetDepartmentConparethisMonth');
+Route::get('/EMSGetThisMonthenergyOverview','EMSMonthlyController@EMSGetThisMonthenergyOverview');
+// Route::get('/EmsgetOverviewEnergyCustomDate','HomeContentController@EmsgetOverviewEnergyCustomDate');
+
+
+// Yearly Zone
+Route::get('/YearlyEnergychart','EMSYearlyController@YearlyEnergychart');
+Route::get('/EMSGetComparewithlastyear','EMSYearlyController@EMSGetComparewithlastyear');
+Route::get('/EMSGetDepartmentConparethisYear','EMSYearlyController@EMSGetDepartmentConparethisYear');
+Route::get('/EMSGetThisYearenergyOverview','EMSYearlyController@EMSGetThisYearenergyOverview');
 

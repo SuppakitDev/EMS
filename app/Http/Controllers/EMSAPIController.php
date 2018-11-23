@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Input;
 use App\ems_info;
 use App\ems_overview;
 use App\display_info;
-use App\ct_info;
+
 class EMSAPIController extends Controller
 {
     public function EmsInsert()
@@ -234,25 +234,30 @@ class EMSAPIController extends Controller
             // End Prepare Data to varable Zone
 
             // Start Insert to display_info Table
-            $Display_info                       = new display_info();
-            $Display_info->Dis_SerialNo         = $Serial_DIS;         
-            $Display_info->C_ID                 = $C_ID_info ;         
-            $Display_info->B_ID                 = $B_ID_info;         
-            $Display_info->Dis_Number           = $DIS_number_info;         
-            $Display_info->Model                = $Model_Code_of_DIS;         
-            $Display_info->Manufacturing_Date   = $Manufact_DIS;         
-            $Display_info->Firmware_Version     = $Firmware_DIS;
+            $Display_info                           = new display_info();
+            $Display_info->Dis_SerialNo             = $Serial_DIS;         
+            $Display_info->C_ID                     = $C_ID_info ;         
+            $Display_info->B_ID                     = $B_ID_info;         
+            $Display_info->Dis_Number               = $DIS_number_info;         
+            $Display_info->DisModel                 = $Model_Code_of_DIS;         
+            $Display_info->DisManufacturing_Date    = $Manufact_DIS;         
+            $Display_info->DisFirmware_Version      = $Firmware_DIS;
+            $Display_info->Ct_SerialNo              = $Serial_CT;         
+            $Display_info->CtModel                  = $Model_CT;         
+            $Display_info->CtManufacturing_Date     = $Manufact_CT;         
+            $Display_info->CtFirmware_Version       = $Firmware_CT;
+
             $Display_info->save();         
             // End Insert to display_info Table
 
             // Start Insert to ct_info Table
-            $ct_info                       = new ct_info();
-            $ct_info->Dis_SerialNo         = $Serial_DIS;         
-            $ct_info->Ct_SerialNo          = $Serial_CT;         
-            $ct_info->Model                = $Model_CT;         
-            $ct_info->Manufacturing_Date   = $Manufact_CT;         
-            $ct_info->Firmware_Version     = $Firmware_CT;
-            $ct_info->save();         
+            // $ct_info                       = new ct_info();
+            // $ct_info->Dis_SerialNo         = $Serial_DIS;         
+            // $ct_info->Ct_SerialNo          = $Serial_CT;         
+            // $ct_info->Model                = $Model_CT;         
+            // $ct_info->Manufacturing_Date   = $Manufact_CT;         
+            // $ct_info->Firmware_Version     = $Firmware_CT;
+            // $ct_info->save();         
             // End Insert to ct_info Table           
         }
     }

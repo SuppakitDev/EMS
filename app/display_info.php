@@ -7,12 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 class display_info extends Model
 {
     protected $table = 'display_info';
-    protected $fillable = ['id','Dis_SerialNo','C_ID','B_ID','Dis_Number','Model','Manufacturing_Date','Firmware_Version'];
+    protected $fillable = ['id','Dis_SerialNo','C_ID','B_ID','Dis_Number','DisModel'
+                            ,'DisManufacturing_Date','DisFirmware_Version','Ct_SerialNo','CtModel'
+                            ,'CtManufacturing_Date','CtFirmware_Version','created_at','updated_at'];
 
-    public function ct_infos()
-    {
-        return $this->belongsTo('App\ct_info');
-    }
+    // public function ct_infos()
+    // {
+    //     return $this->belongsTo('App\ct_info');
+    // }
 
     public function client_companys()
     {

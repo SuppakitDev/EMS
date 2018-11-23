@@ -10,6 +10,7 @@ use App\client_company;
 use DB;
 use DateTime;
 use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Input;
 class FiltermemberController extends Controller
 {
     public function Index()
@@ -102,12 +103,21 @@ class FiltermemberController extends Controller
                         $companyname = $companys->C_name;
                     }
 
+                $Building = DB::table('building')
+                    ->where('C_ID','=',Auth::user()->C_ID)
+                    ->get();
+        
+                $Department = DB::table('department')
+                    ->where('C_ID','=',Auth::user()->C_ID)
+                    ->get();
                     return view('Content\Manager\Managerhome',
                     [
                         'Totalenergy' => $Totalenergy,
                         'Realtimepower' => $Realtimepower,
                         'Money_rate' => $Money_rate,
                         'companyname' => $companyname,
+                        'Building' => $Building,
+                        'Department' => $Department,
                     ]);
         }
         elseif(Auth::user()->Status == "USER")
@@ -328,118 +338,301 @@ class FiltermemberController extends Controller
         //  }
 
         // return $DisdateMax;
-        header("Content-type: text/json");
-        $Department = DB::table('department')
-        ->where('C_ID','=',Auth::user()->C_ID)
-        ->select('id','Dept_Name') 
-        ->OrderBy('id')
-        ->get();
+        // header("Content-type: text/json");
+        // $Department = DB::table('department')
+        // ->where('C_ID','=',Auth::user()->C_ID)
+        // ->select('id','Dept_Name') 
+        // ->OrderBy('id')
+        // ->get();
         
-        foreach($Department as $Departments)
-        {
-            $ID = $Departments->id;
-            $Name[] = $Departments->Dept_Name;
+        // foreach($Department as $Departments)
+        // {
+        //     $ID = $Departments->id;
+        //     $Name[] = $Departments->Dept_Name;
 
-                $currentDate = Date("Y-m-d");
-                $Disdate = DB::table('ems_overview')
-                ->where('C_ID','=',Auth::user()->C_ID)
-                ->where('D_ID','=',$ID)
-                ->whereRaw('Date(Dis_date) = ?',[$currentDate])
-                ->Select(DB::raw('Min(Dis_date) as MinDis_date'),DB::raw('Max(Dis_date) as MaxDis_date'))
-                ->get();
-                foreach($Disdate as $Disdates)
-                {
-                        $MaxDate = $Disdates->MaxDis_date;
-                        $MinDate = $Disdates->MinDis_date;
-                }
-                // ทำการปรับเวลา เพื่อหลีกเลี่ยงกรณีข้อมูลชุดล่าสุดยังมาไม่ครบ ด้วยการ -5 นาที เพื่ือเอาข้อมูลชุดที่ครบถ้วน 
-                $date = new DateTime($MaxDate);
-                $date->modify('-5 minutes');
-                $MAXDISDATE =  $date->format('Y-m-d H:i:s');
-                // ดึง Apf รวมของเวลาที่มากสุด
-                $MaxApf = DB::table('ems_overview')
-                ->where('C_ID','=',Auth::user()->C_ID)
-                ->where('D_ID','=',$ID)
-                ->where('Dis_date' ,'=',$MAXDISDATE)
-                ->Select(DB::raw('SUM(Apf) as total_Apf'))
-                ->groupBy('Dis_Date')
-                ->get();
-                // ดึง Apf รวมของเวลาที่น้อยสุด
-                $MinApf = DB::table('ems_overview')
-                ->where('C_ID','=',Auth::user()->C_ID)
-                ->where('D_ID','=',$ID)
-                ->where('Dis_date' ,'=',$MinDate)
-                ->Select(DB::raw('SUM(Apf) as total_Apf'))
-                ->groupBy('Dis_Date')
-                ->get();
-                // แยกข้อมูลออกจาก Array
-                foreach($MaxApf as $MaxApfs )
-                {
-                    $MaxApf = $MaxApfs->total_Apf;
-                }
-                // แยกข้อมูลออกจาก Array
-                foreach($MinApf as $MinApfs )
-                {
-                    $MinApf = $MinApfs->total_Apf;
-                }
-                // มากสุด - น้อยสุด เพื่อหาพลังงานทั้งหมด
-                $Totalenergythisday[] = $MaxApf - $MinApf;
+        //         $currentDate = Date("Y-m-d");
+        //         $Disdate = DB::table('ems_overview')
+        //         ->where('C_ID','=',Auth::user()->C_ID)
+        //         ->where('D_ID','=',$ID)
+        //         ->whereRaw('Date(Dis_date) = ?',[$currentDate])
+        //         ->Select(DB::raw('Min(Dis_date) as MinDis_date'),DB::raw('Max(Dis_date) as MaxDis_date'))
+        //         ->get();
+        //         foreach($Disdate as $Disdates)
+        //         {
+        //                 $MaxDate = $Disdates->MaxDis_date;
+        //                 $MinDate = $Disdates->MinDis_date;
+        //         }
+        //         // ทำการปรับเวลา เพื่อหลีกเลี่ยงกรณีข้อมูลชุดล่าสุดยังมาไม่ครบ ด้วยการ -5 นาที เพื่ือเอาข้อมูลชุดที่ครบถ้วน 
+        //         $date = new DateTime($MaxDate);
+        //         $date->modify('-5 minutes');
+        //         $MAXDISDATE =  $date->format('Y-m-d H:i:s');
+        //         // ดึง Apf รวมของเวลาที่มากสุด
+        //         $MaxApf = DB::table('ems_overview')
+        //         ->where('C_ID','=',Auth::user()->C_ID)
+        //         ->where('D_ID','=',$ID)
+        //         ->where('Dis_date' ,'=',$MAXDISDATE)
+        //         ->Select(DB::raw('SUM(Apf) as total_Apf'))
+        //         ->groupBy('Dis_Date')
+        //         ->get();
+        //         // ดึง Apf รวมของเวลาที่น้อยสุด
+        //         $MinApf = DB::table('ems_overview')
+        //         ->where('C_ID','=',Auth::user()->C_ID)
+        //         ->where('D_ID','=',$ID)
+        //         ->where('Dis_date' ,'=',$MinDate)
+        //         ->Select(DB::raw('SUM(Apf) as total_Apf'))
+        //         ->groupBy('Dis_Date')
+        //         ->get();
+        //         // แยกข้อมูลออกจาก Array
+        //         foreach($MaxApf as $MaxApfs )
+        //         {
+        //             $MaxApf = $MaxApfs->total_Apf;
+        //         }
+        //         // แยกข้อมูลออกจาก Array
+        //         foreach($MinApf as $MinApfs )
+        //         {
+        //             $MinApf = $MinApfs->total_Apf;
+        //         }
+        //         // มากสุด - น้อยสุด เพื่อหาพลังงานทั้งหมด
+        //         $Totalenergythisday[] = $MaxApf - $MinApf;
 
 
-                $YesterdayDate = Date("Y-m-d", time() - 86400);
-                // date_modify($YesterdayDate,"-1 day");
-                $Disdate = DB::table('ems_overview')
-                ->where('C_ID','=',Auth::user()->C_ID)
-                ->where('D_ID','=',$ID)
-                ->whereRaw('Date(Dis_date) = ?',[$YesterdayDate])
-                ->Select(DB::raw('Min(Dis_date) as MinDis_date'),DB::raw('Max(Dis_date) as MaxDis_date'))
-                ->get();
-                foreach($Disdate as $Disdates)
-                {
-                        $MaxDate = $Disdates->MaxDis_date;
-                        $MinDate = $Disdates->MinDis_date;
-                }
-                // ทำการปรับเวลา เพื่อหลีกเลี่ยงกรณีข้อมูลชุดล่าสุดยังมาไม่ครบ ด้วยการ -5 นาที เพื่ือเอาข้อมูลชุดที่ครบถ้วน 
-                $date = new DateTime($MaxDate);
+        //         $YesterdayDate = Date("Y-m-d", time() - 86400);
+        //         // date_modify($YesterdayDate,"-1 day");
+        //         $Disdate = DB::table('ems_overview')
+        //         ->where('C_ID','=',Auth::user()->C_ID)
+        //         ->where('D_ID','=',$ID)
+        //         ->whereRaw('Date(Dis_date) = ?',[$YesterdayDate])
+        //         ->Select(DB::raw('Min(Dis_date) as MinDis_date'),DB::raw('Max(Dis_date) as MaxDis_date'))
+        //         ->get();
+        //         foreach($Disdate as $Disdates)
+        //         {
+        //                 $MaxDate = $Disdates->MaxDis_date;
+        //                 $MinDate = $Disdates->MinDis_date;
+        //         }
+        //         // ทำการปรับเวลา เพื่อหลีกเลี่ยงกรณีข้อมูลชุดล่าสุดยังมาไม่ครบ ด้วยการ -5 นาที เพื่ือเอาข้อมูลชุดที่ครบถ้วน 
+        //         $date = new DateTime($MaxDate);
                 
-                $MAXDISDATE =  $date->format('Y-m-d H:i:s');
-                // ดึง Apf รวมของเวลาที่มากสุด
-                $MaxApf = DB::table('ems_overview')
-                ->where('C_ID','=',Auth::user()->C_ID)
-                ->where('D_ID','=',$ID)
-                ->where('Dis_date' ,'=',$MAXDISDATE)
-                ->Select(DB::raw('SUM(Apf) as total_Apf'))
-                ->groupBy('Dis_Date')
-                ->get();
-                // ดึง Apf รวมของเวลาที่น้อยสุด
-                $MinApf = DB::table('ems_overview')
-                ->where('C_ID','=',Auth::user()->C_ID)
-                ->where('D_ID','=',$ID)
-                ->where('Dis_date' ,'=',$MinDate)
-                ->Select(DB::raw('SUM(Apf) as total_Apf'))
-                ->groupBy('Dis_Date')
-                ->get();
-                // แยกข้อมูลออกจาก Array
-                foreach($MaxApf as $MaxApfs )
-                {
-                    $MaxApf = $MaxApfs->total_Apf;
-                }
-                // แยกข้อมูลออกจาก Array
-                foreach($MinApf as $MinApfs )
-                {
-                    $MinApf = $MinApfs->total_Apf;
-                }
-                // มากสุด - น้อยสุด เพื่อหาพลังงานทั้งหมด
-                $Totalenergyyesterday[] = $MaxApf - $MinApf;
+        //         $MAXDISDATE =  $date->format('Y-m-d H:i:s');
+        //         // ดึง Apf รวมของเวลาที่มากสุด
+        //         $MaxApf = DB::table('ems_overview')
+        //         ->where('C_ID','=',Auth::user()->C_ID)
+        //         ->where('D_ID','=',$ID)
+        //         ->where('Dis_date' ,'=',$MAXDISDATE)
+        //         ->Select(DB::raw('SUM(Apf) as total_Apf'))
+        //         ->groupBy('Dis_Date')
+        //         ->get();
+        //         // ดึง Apf รวมของเวลาที่น้อยสุด
+        //         $MinApf = DB::table('ems_overview')
+        //         ->where('C_ID','=',Auth::user()->C_ID)
+        //         ->where('D_ID','=',$ID)
+        //         ->where('Dis_date' ,'=',$MinDate)
+        //         ->Select(DB::raw('SUM(Apf) as total_Apf'))
+        //         ->groupBy('Dis_Date')
+        //         ->get();
+        //         // แยกข้อมูลออกจาก Array
+        //         foreach($MaxApf as $MaxApfs )
+        //         {
+        //             $MaxApf = $MaxApfs->total_Apf;
+        //         }
+        //         // แยกข้อมูลออกจาก Array
+        //         foreach($MinApf as $MinApfs )
+        //         {
+        //             $MinApf = $MinApfs->total_Apf;
+        //         }
+        //         // มากสุด - น้อยสุด เพื่อหาพลังงานทั้งหมด
+        //         $Totalenergyyesterday[] = $MaxApf - $MinApf;
 
 
-        }
+        // }
 
-        return Response::json([
-            'Name' => $Name,
-            'Totalenergythisday' => $Totalenergythisday,
-            'Totalenergyyesterday' => $Totalenergyyesterday,
-        ], 200, [], JSON_NUMERIC_CHECK);
+        // return Response::json([
+        //     'Name' => $Name,
+        //     'Totalenergythisday' => $Totalenergythisday,
+        //     'Totalenergyyesterday' => $Totalenergyyesterday,
+        // ], 200, [], JSON_NUMERIC_CHECK);
+
+          // // $DisplayInfo = DB::table('dispaly_info')
+    //     $Buildlist = DB::table('building')
+    //     ->where('C_ID','=',Auth::user()->C_ID)
+    //     ->select('id','Build_Name')
+    //     ->get();
+
+    //     foreach($Buildlist as $Buildlists)
+    //     {
+    //         $ID = $Buildlists->id;
+    //         $Name[] = $Buildlists->Build_Name;
+
+    //         $DisplayInfo[] = DB::table('display_info')
+    //         ->where('C_ID','=',Auth::user()->C_ID)
+    //         ->where('B_ID','=',$ID)
+    //         ->get();
+    //     }
+    //    return($DisplayInfo);
+            // $currentYear = Date("Y");
+            // $currentMonth = Date("m");
+            // $Day = DB::table('ems_overview')
+            //     ->select(DB::Raw('DATE(Dis_date) as day'))
+            //     ->where('C_ID','=',Auth::user()->C_ID)
+            //     ->whereYear('Dis_date', '=', $currentYear)
+            //     ->whereMonth('Dis_date','=',$currentMonth)
+            //     ->GroupBy('day')
+            //     ->get();
+            // foreach($Day as $Days )
+            //     {
+            //         $Dayout = $Days->day;
+                   
+            //         $DateGraph = Date("d", strtotime($Dayout)- 86400);
+                    
+            //          //         $YesterdayDate = Date("Y-m-d", time() - 86400);
+                    
+            //         $Datetime = DB::table('ems_overview')
+            //                 ->where('C_ID','=',Auth::user()->C_ID)
+            //                 ->whereDate('Dis_date','=',$Dayout)
+            //                 ->select(DB::Raw('MAX(Dis_date) as Maxdatetime, MIN(Dis_date) as Mindatetime'))
+            //                 ->get();
+            //         foreach($Datetime as $Datetimes)
+            //         {
+            //             $Maxdisdate = $Datetimes->Maxdatetime;
+            //             $Mindisdate = $Datetimes->Mindatetime;
+            //         }
+
+            //         $Maxenergyeachday = DB::table('ems_overview')
+
+            //                 ->where('C_ID','=',Auth::user()->C_ID)
+            //                 ->where('Dis_date','=',$Maxdisdate) 
+            //                 // ->orWhere('Dis_date','=', $Mindisdate)
+            //                 ->select(DB::raw('SUM(Apf) as Maxapf'))
+            //                 ->GroupBy('Dis_date')
+            //                 ->get();
+            //         foreach($Maxenergyeachday as $Maxenergyeachdays)
+            //                 {
+            //                     $Maxenergyeachday = $Maxenergyeachdays->Maxapf;
+            //                 }
+                    
+            //         $Minenergyeachday = DB::table('ems_overview')
+
+            //                 ->where('C_ID','=',Auth::user()->C_ID)
+            //                 // ->where('Dis_date','=',$Maxdisdate) 
+            //                 ->Where('Dis_date','=', $Mindisdate)
+            //                 ->select(DB::raw('SUM(Apf) as Minapf'))
+            //                 ->GroupBy('Dis_date')
+            //                 ->get();
+                    
+            //         foreach($Minenergyeachday as $Minenergyeachdays)
+            //             {
+            //                 $Minenergyeachday = $Minenergyeachdays->Minapf;
+            //             }
+
+            //         $Totalenergyeachday = $Maxenergyeachday - $Minenergyeachday;
+
+            //         $result[] = array($DateGraph,$Totalenergyeachday);
+
+            //     }
+
+            // return $result;
+            
+            
+
+        //     $Date = Input::get('Date');
+        // $currentYear = Date("Y", strtotime($Date));
+        // // $currentMonth = Date("m", strtotime($Date));
+        // $Month = DB::table('ems_overview')
+        //     ->select(DB::Raw('MONTH(Dis_date) as month'))
+        //     ->where('C_ID','=',Auth::user()->C_ID)
+        //     ->whereYear('Dis_date', '=', $currentYear)
+        //     // ->whereMonth('Dis_date','=',$currentMonth)
+        //     ->GroupBy('month')
+        //     ->get();
+        // foreach($Month as $Months )
+        //     {
+        //         $Monthout = $Months->month;
+               
+        //         // $DateGraph = Date("d", strtotime($Dayout));
+        //         // $DateGraph = Date("d", strtotime($Dayout)- 86400);
+        //         $MonthGraph = $Monthout-1;
+
+                
+        //         $Datetime = DB::table('ems_overview')
+        //                 ->where('C_ID','=',Auth::user()->C_ID)
+        //                 ->whereMonth('Dis_date','=',$Monthout)
+        //                 ->select(DB::Raw('MAX(Dis_date) as Maxdatetime, MIN(Dis_date) as Mindatetime'))
+        //                 ->get();
+        //         foreach($Datetime as $Datetimes)
+        //         {
+        //             $Maxdisdate = $Datetimes->Maxdatetime;
+        //             $Mindisdate = $Datetimes->Mindatetime;
+        //         }
+
+        //         $Maxenergyeachmonth = DB::table('ems_overview')
+
+        //                 ->where('C_ID','=',Auth::user()->C_ID)
+        //                 ->where('Dis_date','=',$Maxdisdate) 
+        //                 // ->orWhere('Dis_date','=', $Mindisdate)
+        //                 ->select(DB::raw('SUM(Apf) as Maxapf'))
+        //                 ->GroupBy('Dis_date')
+        //                 ->get();
+        //         foreach($Maxenergyeachmonth as $Maxenergyeachmonths)
+        //                 {
+        //                     $Maxenergyeachmonth = $Maxenergyeachmonths->Maxapf;
+        //                 }
+                
+        //         $Minenergyeachmonth = DB::table('ems_overview')
+
+        //                 ->where('C_ID','=',Auth::user()->C_ID)
+        //                 // ->where('Dis_date','=',$Maxdisdate) 
+        //                 ->Where('Dis_date','=', $Mindisdate)
+        //                 ->select(DB::raw('SUM(Apf) as Minapf'))
+        //                 ->GroupBy('Dis_date')
+        //                 ->get();
+                
+        //         foreach($Minenergyeachmonth as $Minenergyeachmonths)
+        //             {
+        //                 $Minenergyeachmonth = $Minenergyeachmonths->Minapf;
+        //             }
+
+        //         $Totalenergyeachmonth = $Maxenergyeachmonth - $Minenergyeachmonth;
+
+        //         $result[] = array($MonthGraph,$Totalenergyeachmonth);
+
+        //     }
+        //     return $result;
+
+    //     header("Content-type: text/json");
+
+    //     $Startdate = "2018-11-22";
+    //     $Stopdate = "2018-11-23";
+
+    //     $RealtimepowerDaily = DB::table('ems_overview')
+    //     ->where('C_ID','=',Auth::user()->C_ID)
+    //     ->whereDate('Dis_date', '<=', $Stopdate)
+    //     ->whereDate('Dis_date', '>=', $Startdate)
+    //     ->SelectRaw('(UNIX_TIMESTAMP(Dis_Date))*1000 AS x , SUM(Pof) as y')
+    //     ->groupBy('Dis_Date')
+    //     ->get();
+    // return Response::json($RealtimepowerDaily, 200, [], JSON_NUMERIC_CHECK); 
+
+        //     $datestart = '2018-11-22';
+        //     $datestop = '2018-11-30';
+        //     $Start = Date("Y-m-d", strtotime($datestart));
+        //     $Stop = Date("Y-m-d", strtotime($datestop));
+
+        //     for($st = $Start ; $st <= $Stop ; $st = Date("Y-m-d", strtotime($st)+ 86400) )
+        //     {
+        //         $ar = $st;
+        //         $resultplot[] = array($ar,null);
+        //     }
+           
+        //   dump($resultplot);
+
+        $Building = DB::table('building')
+            ->where('C_ID','=',Auth::user()->C_ID)
+            ->get();
+
+        $Department = DB::table('department')
+            ->where('C_ID','=',Auth::user()->C_ID)
+            ->get();
+        
+        return $Department;
 
     }
 }

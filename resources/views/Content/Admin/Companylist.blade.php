@@ -7,6 +7,7 @@
 {
   display:none;
 }
+
 }
 @media only screen and (min-device-width: 360px) and (max-device-width: 560px) 
 {

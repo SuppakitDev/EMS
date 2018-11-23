@@ -50,13 +50,13 @@
              <ul class="right top-ul chevron">
                 <!-- <li><a href="##">Periodical</a></li> -->
                 <li>
-                  <a href="##" >Periodical</a>
-                  <ul>
+                  <a href="/filtermember" >Home</a>
+                  <!-- <ul>
                     <li><a>Daily</a></li>
                     <li><a>Monthly</a></li>
                     <li><a>Yearly</a></li>
                     <li><a href="#" data-toggle="modal" data-target="#Customdate">Custom date</a></li>
-                  </ul>
+                  </ul> -->
                 </li>
                 <li><a href="#" data-toggle="modal" data-target="#Exportbill">Electric charge</a></li>
                 <li><a href="#" data-toggle="modal" data-target="#ExportCsv">CSV Export</a></li>
@@ -79,20 +79,17 @@
                 <li>
                   <a href="##" >Site Detail</a>
                   <ul>
-                    <li><a>Building 1</a>
+                    @foreach($Building as $Buildings)
+                    <li><a>{{$Buildings->Build_Name}}</a>
                       <ul>
-                        <li><a href="\Insidedept">Department1</a></li>
-                        <li><a>Department2</a></li>
-                        <li><a>Department3</a></li>
+                      @foreach($Department as $Departments)
+                          @if($Departments->B_ID == $Buildings->id)
+                            <li style="width:100px;" ><a href="\Insidedept?Deptid={{$Departments->id}}">{{$Departments->Dept_Name}}</a></li>
+                          @endif
+                      @endforeach
                       </ul>
                     </li>
-                    <li><a>Building 2</a>
-                    <ul>
-                        <li><a>Department1</a></li>
-                        <li><a>Department2</a></li>
-                        <li><a>Department3</a></li>
-                      </ul>
-                    </li>
+                    @endforeach
                   </ul>
                 </li>
                 <li><a href="EmsInformation">Information</a></li>

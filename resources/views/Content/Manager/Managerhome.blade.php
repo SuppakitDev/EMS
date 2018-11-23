@@ -5,7 +5,19 @@
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
 <script src="https://code.highcharts.com/modules/export-data.js"></script>
 <script src="http://code.highcharts.com/highcharts-more.js"></script>
-
+<!-- Contact Form V5 -->
+    <link rel="stylesheet" type="text/css" href="ContactFrom_v5/vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="ContactFrom_v5/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="ContactFrom_v5/fonts/iconic/css/material-design-iconic-font.min.css">
+	<link rel="stylesheet" type="text/css" href="ContactFrom_v5/vendor/animate/animate.css">
+	<link rel="stylesheet" type="text/css" href="ContactFrom_v5/vendor/css-hamburgers/hamburgers.min.css">
+	<link rel="stylesheet" type="text/css" href="ContactFrom_v5/vendor/animsition/css/animsition.min.css">
+	<link rel="stylesheet" type="text/css" href="ContactFrom_v5/vendor/select2/select2.min.css">
+	<link rel="stylesheet" type="text/css" href="ContactFrom_v5/vendor/daterangepicker/daterangepicker.css">
+	<link rel="stylesheet" type="text/css" href="ContactFrom_v5/vendor/noui/nouislider.min.css">
+	<link rel="stylesheet" type="text/css" href="ContactFrom_v5/css/util.css">
+	<link rel="stylesheet" type="text/css" href="ContactFrom_v5/css/main.css">
+<!-- Contact Form V5 -->
 @section('content')
 
 <header class="section background-image text-center" style="background-image:url(Main-layout/img/BG02-edit.jpg)">
@@ -127,128 +139,141 @@
             </div>
             <!-- Modal Costom date -->
             <div class="modal fade" id="CustomdateOverview" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
+                <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">CustomdateOverview</h5>
+                            <h5 class="modal-title input100" id="exampleModalLabel" style="color:#16915B;font-size:170%;"><i style="color:#0BFF73;" class="icon-sli-calendar"></i>  Custom Date Overview</h5>
                             <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"> -->
                             <!-- <span aria-hidden="true">&times;</span> -->
                             <!-- </button> -->
                         </div>
                         <div class="modal-body">
-                            ...
+                        <div class="container-contact100">
+		<div class="wrap-contact100">
+			<!-- <form class="contact100-form validate-form"> -->
+            <?= Form::open(array('url' => 'EmsOverviewCustomDate','method'=>'get','class'=>'contact100-form validate-form','target' => '_blank')) ?>
+                                    
+                                            {{ csrf_field() }}
+                
+                        <div class="row" Style="margin-left:2%;" >
+						<div class="contact100-form-radio" style="margin-right:2%;">
+							<input class="input-radio100" id="radio2" type="radio" name="type-select" value="Power">
+							<label class="label-radio100" for="radio2">
+								Power
+							</label>
+						</div>
+                        <br>
+						<div class="contact100-form-radio">
+							<input class="input-radio100" id="radio3" type="radio" name="type-select" value="Energy">
+							<label class="label-radio100" for="radio3">
+								Energy
+							</label>
                         </div>
-                        <div class="modal-footer">
+                        </div>
+				<div class="wrap-input100 validate-input bg1" data-validate="Please Select Start Date">
+					<span class="label-input100">FROM</span>
+					<input class="input100" type="date" name="Startdate" >
+				</div>
+
+				<div class="wrap-input100 validate-input bg1" data-validate="Please Select Stop Date">
+					<span class="label-input100">FROM</span>
+					<input class="input100" type="date" name="Stopdate" >
+				</div>
+
+				<!-- <div class="wrap-input100 bg1 rs1-wrap-input100">
+					<span class="label-input100">Phone</span>
+					<input class="input100" type="text" name="phone" placeholder="Enter Number Phone">
+				</div> -->
+
+				<!-- <div class="wrap-input100 input100-select bg1">
+					<span class="label-input100">Needed Services *</span>
+					<div>
+						<select class="js-select2" name="service">
+							<option>Please chooses</option>
+							<option>eCommerce Bussiness</option>
+							<option>UI/UX Design</option>
+							<option>Online Services</option>
+						</select>
+						<div class="dropDownSelect2"></div>
+					</div>
+				</div> -->
+
+				<!-- <div class="w-full dis-none js-show-service">
+					<div class="wrap-contact100-form-radio">
+						<span class="label-input100">What type of products do you sell?</span>
+
+						<div class="contact100-form-radio m-t-15">
+							<input class="input-radio100" id="radio1" type="radio" name="type-product" value="physical" checked="checked">
+							<label class="label-radio100" for="radio1">
+								Phycical Products
+							</label>
+						</div>
+
+						<div class="contact100-form-radio">
+							<input class="input-radio100" id="radio2" type="radio" name="type-product" value="digital">
+							<label class="label-radio100" for="radio2">
+								Digital Products
+							</label>
+						</div>
+
+						<div class="contact100-form-radio">
+							<input class="input-radio100" id="radio3" type="radio" name="type-product" value="service">
+							<label class="label-radio100" for="radio3">
+								Services Consulting
+							</label>
+						</div>
+					</div> -->
+
+					<!-- <div class="wrap-contact100-form-range">
+						<span class="label-input100">Budget *</span>
+
+						<div class="contact100-form-range-value">
+							$<span id="value-lower">610</span> - $<span id="value-upper">980</span>
+							<input type="text" name="from-value">
+							<input type="text" name="to-value">
+						</div>
+
+						<div class="contact100-form-range-bar">
+							<div id="filter-bar"></div>
+						</div>
+					</div> -->
+				<!-- </div> -->
+
+				<!-- <div class="wrap-input100 validate-input bg0 rs1-alert-validate" data-validate = "Please Type Your Message">
+					<span class="label-input100">Message</span>
+					<textarea class="input100" name="message" placeholder="Your message here..."></textarea>
+				</div> -->
+
+				<div class="container-contact100-form-btn">
+					<button class="contact100-form-btn">
+						<span>
+							Submit
+							<i class="icon-sli-control-forward" aria-hidden="true"></i>
+						</span>
+					</button>
+				</div>
+                {!! Form::close() !!}
+		</div>
+	</div>
+                        </div>
+                        <!-- <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                             <button type="button" class="btn btn-success">Save changes</button>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
-            <div class="line">
+            <div class="Chart1">
+            
                 <!-- Graph Power -->
-                <div class="Chart1">
+                
                       
-                </div>
+                
+            
             </div>
-        </section>
-        <!-- Section 3 -->
-        <section style="width:100%;padding-top:45px;">
-            <div class="line text-center">
-                <i class="icon-sli-chart text-primary text-size-40"></i>
-                <h2 class="text-dark text-size-30 text-m-size-40"><b>Energy This day VS Energy Yesterday </b></h2>
-                <!-- <hr class="break background-primary break-small break-center margin-bottom-45"> -->
-            </div>
-        <div class="line">
-            <div class="row" style="margin-top:2%;margin-left:4%;margin-right:4%">
-                <div class="col-md-12">
-                    <div class="float-left">
-                        <i class="icon-sli-graph text-primary text-size-30 text-line-height-1"></i>
-                    </div>
-                <div>
-                    <h3 class="text-strong text-size-20 text-line-height-1 margin-bottom-40">Power of {{$companyname}}</h3>
-                    <!-- Graph Power -->
-                    <div id="container3" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
 <!-- For Column Chart -->
 <script> 
-    // $('#container3').highcharts({
-        $.getJSON('/EMSGetComparewithyesterday', function(data){
-        var Dailydetailchart = new Highcharts.chart('container3', {
-        chart: {
-            type: 'column'
-        },
-        title: {
-            text: '{{$companyname }}'+' Department'
-        },
-        subtitle: {
-            text: 'Energy This day VS Energy yesterday.'
-        },
-        xAxis: {
-            categories:data.Name
-        },
-        yAxis: {
-            min: 0,
-            title: {
-                text: 'Energy (Wh)'
-            }
-        },
-        legend: {
-            // layout: 'horizontal',
-            backgroundColor: '#FFFFFF',
-            // floating: true,
-            // align: 'left',
-            // verticalAlign: 'top',
-            title: "TEST"
-        },
-        tooltip: {
-            shared: true,
-            valueSuffix: ' mm'
-        },
-        plotOptions: {
-            column: {
-                grouping: true,
-                shadow: false,
-                // pointWidth: 10,
-                borderWidth: 0
-            }
-        },
-          
-        series: [
-        {
-            name: 'Yesterday',
-            data: data.Totalenergyyesterday,
-            // pointPlacement: -0.1,
-            color: '#3D3C40'
 
-        }, {
-            name: 'This day',
-            data: data.Totalenergythisday,
-            // pointPlacement: 0.1,
-            color: '#47FFAF'
-
-        },
-        ]
-    });
-    setInterval(function () {
-    $.ajax(
-            {
-                url: '/EMSGetComparewithyesterday',
-                type: 'GET',   
-            }).done( 
-                function(newdata) 
-                    {
-                        Dailydetailchart.series[0].setData(newdata.Totalenergyyesterday);   
-                        Dailydetailchart.series[1].setData(newdata.Totalenergythisday);   
-                    console.log("New Data Added");
-                    });
-    }, 300000);  
-    });
           //  <!-- Ajax change Content Zone -->
     $( document ).ready(function() {
                 $.ajax(
@@ -351,4 +376,71 @@
                       );
           }, 300000);
           </script>
+
+<!-- Contact Form V5  -->
+<script src="ContactFrom_v5/vendor/jquery/jquery-3.2.1.min.js"></script>
+	<script src="ContactFrom_v5/vendor/animsition/js/animsition.min.js"></script>
+	<script src="ContactFrom_v5/vendor/bootstrap/js/popper.js"></script>
+	<script src="ContactFrom_v5/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="ContactFrom_v5/vendor/select2/select2.min.js"></script>
+	<!-- <script>
+		$(".js-select2").each(function(){
+			$(this).select2({
+				minimumResultsForSearch: 20,
+				dropdownParent: $(this).next('.dropDownSelect2')
+			});
+
+
+			$(".js-select2").each(function(){
+				$(this).on('select2:close', function (e){
+					if($(this).val() == "Please chooses") {
+						$('.js-show-service').slideUp();
+					}
+					else {
+						$('.js-show-service').slideUp();
+						$('.js-show-service').slideDown();
+					}
+				});
+			});
+		})
+	</script> -->
+	<script src="ContactFrom_v5/vendor/daterangepicker/moment.min.js"></script>
+	<script src="ContactFrom_v5/vendor/daterangepicker/daterangepicker.js"></script>
+	<script src="ContactFrom_v5/vendor/countdowntime/countdowntime.js"></script>
+	<!-- <script src="ContactFrom_v5/vendor/noui/nouislider.min.js"></script> -->
+	<!-- <script>
+	    var filterBar = document.getElementById('filter-bar');
+
+	    noUiSlider.create(filterBar, {
+	        start: [ 1500, 3900 ],
+	        connect: true,
+	        range: {
+	            'min': 1500,
+	            'max': 7500
+	        }
+	    });
+
+	    var skipValues = [
+	    document.getElementById('value-lower'),
+	    document.getElementById('value-upper')
+	    ];
+
+	    filterBar.noUiSlider.on('update', function( values, handle ) {
+	        skipValues[handle].innerHTML = Math.round(values[handle]);
+	        $('.contact100-form-range-value input[name="from-value"]').val($('#value-lower').html());
+	        $('.contact100-form-range-value input[name="to-value"]').val($('#value-upper').html());
+	    });
+	</script> -->
+	<script src="ContactFrom_v5/js/main.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-23581568-13');
+</script>
+<!-- Contact Form V5  -->
 @endsection

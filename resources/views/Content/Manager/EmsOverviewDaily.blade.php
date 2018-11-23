@@ -1,3 +1,4 @@
+<div class="line">
 <div class="row" style="margin-top:2%;margin-left:4%;margin-right:4%">
   <div class="col-md-8">
     <div class="float-left">
@@ -32,7 +33,7 @@
         </div>
         <div class="col-md-3">
           <p id="Realtimepowerthisday" style="text-align:center;color:#3DF085;font-weight: bold;">{{$Realtimepower/1000}} kW</p>
-          <h2 class="text-dark text-size-15" style="text-align:center;">POWER DAILY</h2>
+          <h2 class="text-dark text-size-15" style="text-align:center;">POWER REAL-TIME</h2>
         </div>
         <div class="col-md-3">
           <p id="ElectricityChargethisday" style="text-align:center;color:#3DF085;font-weight: bold;">{{$Totalenergythisday * $Money_rate}} THB</p>
@@ -44,9 +45,108 @@
         </div>
       </div>
     </div>
-  </div>
+</div>
+</div>
+        </section>
+        <!-- Section 3 -->
+        <section style="width:100%;padding-top:45px;">
+            <div class="line text-center">
+                <i class="icon-sli-chart text-primary text-size-40"></i>
+                <h2 class="text-dark text-size-30 text-m-size-40"><b>Energy This day VS Energy Yesterday </b></h2>
+                <!-- <hr class="break background-primary break-small break-center margin-bottom-45"> -->
+            </div>
+        <div class="line">
+            <div class="row" style="margin-top:2%;margin-left:4%;margin-right:4%">
+                <div class="col-md-12">
+                    <div class="float-left">
+                        <i class="icon-sli-graph text-primary text-size-30 text-line-height-1"></i>
+                    </div>
+                <div>
+                    <h3 class="text-strong text-size-20 text-line-height-1 margin-bottom-40">Power of {{$companyname}}</h3>
+                    <!-- Graph Power -->
+                    <div id="container3" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 <!-- <input data-provide="datepicker"> -->
 <script type="text/javascript">  
+
+        // $('#container3').highcharts({
+            $.getJSON('/EMSGetComparewithyesterday', function(data){
+        var Dailydetailchart = new Highcharts.chart('container3', {
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: '{{$companyname }}'+' Department'
+        },
+        subtitle: {
+            text: 'Energy This day VS Energy yesterday.'
+        },
+        xAxis: {
+            categories:data.Name
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Energy (Wh)'
+            }
+        },
+        legend: {
+            // layout: 'horizontal',
+            backgroundColor: '#FFFFFF',
+            // floating: true,
+            // align: 'left',
+            // verticalAlign: 'top',
+            title: "TEST"
+        },
+        tooltip: {
+            shared: true,
+            valueSuffix: ' Wh'
+        },
+        plotOptions: {
+            column: {
+                grouping: true,
+                shadow: false,
+                // pointWidth: 10,
+                borderWidth: 0
+            }
+        },
+          
+        series: [
+        {
+            name: 'Yesterday',
+            data: data.Totalenergyyesterday,
+            // pointPlacement: -0.1,
+            color: '#3D3C40'
+
+        }, {
+            name: 'This day',
+            data: data.Totalenergythisday,
+            // pointPlacement: 0.1,
+            color: '#47FFAF'
+
+        },
+        ]
+    });
+    setInterval(function () {
+    $.ajax(
+            {
+                url: '/EMSGetComparewithyesterday',
+                type: 'GET',   
+            }).done( 
+                function(newdata) 
+                    {
+                        Dailydetailchart.series[0].setData(newdata.Totalenergyyesterday);   
+                        Dailydetailchart.series[1].setData(newdata.Totalenergythisday);   
+                    console.log("New Data Added");
+                    });
+    }, 300000);  
+    });
+
+
     var today = new Date();
             var dd = today.getDate();
             var mm = today.getMonth()+1; //January is 0!
@@ -442,8 +542,7 @@
                       type: 'GET',   
                       }).done( 
                       function(RealtimePowerthisday) 
-                          {
-                              
+                          { 
                               console.log("RealtimePowerthisday: "+RealtimePowerthisday/1000); 
 
                               document.getElementById("Realtimepowerthisday").innerHTML = (RealtimePowerthisday/1000).toFixed(3)+" kW";      

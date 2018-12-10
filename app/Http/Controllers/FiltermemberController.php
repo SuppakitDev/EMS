@@ -624,17 +624,71 @@ class FiltermemberController extends Controller
            
         //   dump($resultplot);
 
-        $Building = DB::table('building')
-            ->where('C_ID','=',Auth::user()->C_ID)
-            ->get();
+        // $Building = DB::table('building')
+        //     ->where('C_ID','=',Auth::user()->C_ID)
+        //     ->get();
 
-        $Department = DB::table('department')
-            ->where('C_ID','=',Auth::user()->C_ID)
-            ->get();
+        // $Department = DB::table('department')
+        //     ->where('C_ID','=',Auth::user()->C_ID)
+        //     ->get();
         
-        return $Department;
+        // return $Department;
+        //     $C_ID = 2;
+        //     $Dept_id = 11;
+        
+        // $String1 = DB::table('ems_info')
+        //     ->where('C_ID','=',$C_ID)
+        //     ->where('D_ID','=' ,$Dept_id)
+        //     ->select('id','Ln1','Pof1','Vrms1','Irms1','PF1')
+        //     ->latest()
+        //     ->limit(1)
+        //     ->get();
 
-    }
+        // return $String1;
+        header("Content-type: text/json");
+            $C_ID = 2;
+            $Dept_id = 11;
+            $currentDate = Date("Y-m-d");
+        $RealtimeVoltage1 = DB::table('ems_info')
+            ->where('C_ID','=',$C_ID)
+            ->where('D_ID','=' ,$Dept_id)
+            ->whereDate('Dis_date', '=', $currentDate)
+            ->selectRaw('(UNIX_TIMESTAMP(Dis_Date))*1000 AS x , Vrms1 as y')
+            ->get();
+        $RealtimeVoltage2 = DB::table('ems_info')
+            ->where('C_ID','=',$C_ID)
+            ->where('D_ID','=' ,$Dept_id)
+            ->whereDate('Dis_date', '=', $currentDate)
+            ->selectRaw('(UNIX_TIMESTAMP(Dis_Date))*1000 AS x , Vrms2 as y')
+            ->get();
+        $RealtimeVoltage3 = DB::table('ems_info')
+            ->where('C_ID','=',$C_ID)
+            ->where('D_ID','=' ,$Dept_id)
+            ->whereDate('Dis_date', '=', $currentDate)
+            ->selectRaw('(UNIX_TIMESTAMP(Dis_Date))*1000 AS x , Vrms3 as y')
+            ->get();
+        $RealtimeVoltage4 = DB::table('ems_info')
+            ->where('C_ID','=',$C_ID)
+            ->where('D_ID','=' ,$Dept_id)
+            ->whereDate('Dis_date', '=', $currentDate)
+            ->selectRaw('(UNIX_TIMESTAMP(Dis_Date))*1000 AS x , Vrms4 as y')
+            ->get();
+        $RealtimeVoltage5 = DB::table('ems_info')
+            ->where('C_ID','=',$C_ID)
+            ->where('D_ID','=' ,$Dept_id)
+            ->whereDate('Dis_date', '=', $currentDate)
+            ->selectRaw('(UNIX_TIMESTAMP(Dis_Date))*1000 AS x , Vrms5 as y')
+            ->get();
+
+            $Result = array($RealtimeVoltage1,$RealtimeVoltage2,$RealtimeVoltage3,$RealtimeVoltage4,$RealtimeVoltage5);
+
+            return Response::json($Result[4], 200, [], JSON_NUMERIC_CHECK);
+        
+
+        // return $RealtimeVoltage;
+
+        }
+    
 }
 
 

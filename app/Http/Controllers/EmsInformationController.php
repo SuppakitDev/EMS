@@ -17,6 +17,13 @@ class EmsInformationController extends Controller
 {
     public function index()
     {
+        $Department = DB::table('department')
+                    ->where('C_ID','=',Auth::user()->C_ID)
+                    ->get();
+        $Building = DB::table('building')
+                    ->where('C_ID','=',Auth::user()->C_ID)
+                    ->get();
+
         $Buildlist = DB::table('building')
         ->where('C_ID','=',Auth::user()->C_ID)
         ->select('id','Build_Name')
@@ -36,6 +43,8 @@ class EmsInformationController extends Controller
         return view("Content.Manager.Information",[
             'DisplayInfo' => $DisplayInfo,
             'Name' => $Name,
+            'Building' => $Building,
+            'Department' => $Department,
         ]);
     }
 }

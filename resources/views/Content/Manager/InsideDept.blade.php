@@ -9,6 +9,20 @@
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
 <script src="https://code.highcharts.com/modules/export-data.js"></script>
+
+<!-- Contact Form V5 -->
+<link rel="stylesheet" type="text/css" href="ContactFrom_v5/vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="ContactFrom_v5/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="ContactFrom_v5/fonts/iconic/css/material-design-iconic-font.min.css">
+	<link rel="stylesheet" type="text/css" href="ContactFrom_v5/vendor/animate/animate.css">
+	<link rel="stylesheet" type="text/css" href="ContactFrom_v5/vendor/css-hamburgers/hamburgers.min.css">
+	<link rel="stylesheet" type="text/css" href="ContactFrom_v5/vendor/animsition/css/animsition.min.css">
+	<link rel="stylesheet" type="text/css" href="ContactFrom_v5/vendor/select2/select2.min.css">
+	<link rel="stylesheet" type="text/css" href="ContactFrom_v5/vendor/daterangepicker/daterangepicker.css">
+	<link rel="stylesheet" type="text/css" href="ContactFrom_v5/vendor/noui/nouislider.min.css">
+	<link rel="stylesheet" type="text/css" href="ContactFrom_v5/css/util.css">
+	<link rel="stylesheet" type="text/css" href="ContactFrom_v5/css/main.css">
+<!-- Contact Form V5 -->
 @section('content')
 <header class="section background-image text-center" style="background-image:url(Main-layout/img/BG02-edit.jpg)">
           <!-- <h1 style="margin-bottom:5%;" class="animated-element slow text-extra-thin text-white text-s-size-30 text-m-size-40 text-size-50 text-line-height-1  margin-top-130">
@@ -27,7 +41,7 @@
           <!-- <hr class="break background-primary break-small break-center margin-bottom-10"> -->
           <div class="btn-group btn-group-toggle" data-toggle="buttons">
                
-               <button onclick="InsiteDeptDaily()" type="button" class="btn btn-info active" style="margin-right:2px;" >Daily</button>
+               <button onclick="InsiteDeptDaily()" type="button" class="btn btn-info" style="margin-right:2px;" >Daily</button>
 
                <button onclick="InsiteDeptMonthly()" type="button" class="btn btn-danger" style="margin-right:2px;" >Monthly</button>
            
@@ -40,198 +54,187 @@
         
         
          <!-- Modal Costom date -->
-         <div class="modal fade" id="CustomdateInsiteDept" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">CustomdateInsiteDept</h5>
-                <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"> -->
-                  <!-- <span aria-hidden="true">&times;</span> -->
-                <!-- </button> -->
-              </div>
-              <div class="modal-body">
-                ...
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-success">Save changes</button>
-              </div>
+          <!-- Modal Costom date -->
+          <div class="modal fade" id="CustomdateInsiteDept" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title input100" id="exampleModalLabel" style="color:#16915B;font-size:170%;"><i style="color:#0BFF73;" class="icon-sli-calendar"></i>  Custom Date InsideDept</h5>
+                            <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"> -->
+                            <!-- <span aria-hidden="true">&times;</span> -->
+                            <!-- </button> -->
+                        </div>
+                        <div class="modal-body">
+                        <div class="container-contact100">
+		<div class="wrap-contact100">
+			<!-- <form class="contact100-form validate-form"> -->
+            <?= Form::open(array('url' => 'EmsInsideCustomDate','method'=>'get','class'=>'contact100-form validate-form','target' => '_blank')) ?>
+                                    
+                                            {{ csrf_field() }}
+                
+                        <div class="row" Style="margin-left:2%;" >
+						<div class="contact100-form-radio" style="margin-right:2%;">
+							<input class="input-radio100" id="radio2" type="radio" name="type-select" value="Power">
+							<label class="label-radio100" for="radio2">
+								Power
+							</label>
+						</div>
+                        <br>
+						<div class="contact100-form-radio">
+							<input class="input-radio100" id="radio3" type="radio" name="type-select" value="Energy">
+							<label class="label-radio100" for="radio3">
+								Energy
+							</label>
+                        </div>
+                        </div>
+				<div class="wrap-input100 validate-input bg1" data-validate="Please Select Start Date">
+					<span class="label-input100">FROM</span>
+					<input class="input100" type="date" name="Startdate" >
+				</div>
+
+				<div class="wrap-input100 validate-input bg1" data-validate="Please Select Stop Date">
+					<span class="label-input100">FROM</span>
+					<input class="input100" type="date" name="Stopdate" >
+				</div>
+
+				<input type="hidden" name="Dept_ID" value="{{$DeptdetailID}}">
+				<input type="hidden" name="Dept_Name" value="{{$Deptdetailname}}">
+            
+				<div class="container-contact100-form-btn">
+					<button class="contact100-form-btn">
+						<span>
+							Submit
+							<i class="icon-sli-control-forward" aria-hidden="true"></i>
+						</span>
+					</button>
+				</div>
+                {!! Form::close() !!}
+		</div>
+	</div>
+                        </div>
+                        <!-- <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-success">Save changes</button>
+                        </div> -->
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
 
 
-        <div class="line">
-        <div class="row" style="margin-top:0%;margin-left:4%;margin-right:4%">
-            <div class="col-md-12">
-              <div class="float-left">
-                <i class="icon-sli-graph text-primary text-size-30 text-line-height-1"></i>
-              </div>
-              <div style="width:100%;">
-                <h3 class="text-strong text-size-20 text-line-height-1 margin-bottom-40">Power of Thai-Tabuchi Electric</h3>
-                <!-- Graph Power -->
-                <!-- <div id="container" style="width:100%;height:55%;"></div> -->
+  
                 <div class="ChartInsideDept">
                 
                 </div>
-              </div>
-            </div>
-            <div class="col-md-12">
-              <div class="float-left">
-                <i class="icon-sli-book-open text-primary text-size-30 text-line-height-1"></i>
-              </div>
-              <div >
-                <h3 class="text-strong text-size-20 text-line-height-1 margin-bottom-20">Information to day.</h3>
-                <div class="row" style="margin-top:2%;margin-left:4%;margin-right:4%">
-                    <div class="col-md-3">
-                        <p style="text-align:center;color:#3DF085;font-weight: bold;">136 Unit</p>
-                        <h2 class="text-dark text-size-15" style="text-align:center;">TOTAL ENERGY DAILY</h2>
-                    </div>
-                    <div class="col-md-3">
-                        <p style="text-align:center;color:#3DF085;font-weight: bold;">930.215 kW</p>
-                        <h2 class="text-dark text-size-15" style="text-align:center;">POWER DAILY</h2>
-                    </div>
-                    <div class="col-md-3">
-                        <p style="text-align:center;color:#3DF085;font-weight: bold;">558.96 THB</p>
-                        <h2 class="text-dark text-size-15" style="text-align:center;">ELECTRICITY CHARGE TODAY</h2>
-                    </div>
-                    <div class="col-md-3">
-                        <p style="text-align:center;color:#3DF085;font-weight: bold;">2018-10-26 08:30:00</p>
-                        <h2 class="text-dark text-size-15" style="text-align:center;">DATA LAST UPDATE</h2>
-                    </div>
-                </div>
-              </div>
-            </div>
-            
-        </div>
-      </section>
+ 
 
        <!-- Section 3 -->
     <section style="width:100%;margin-top:2%;">
         <div class="line text-center">
           <i class="icon-sli-screen-desktop text-primary text-size-30"></i>
           <h2 class="text-dark text-size-30 text-m-size-40"><b>1-RND/ENG1 Detail</b></h2>
-          <div class="row" style="width:20%;margin:auto;">
+          <div class="row" style="width:25%;margin:auto;">
             <div class="col-6">
-                <button type="button" class="btn btn-info btn-sm">Small button</button>
+                <button type="button" onclick="window.open('/VoltageRealtime?Dept_ID={{$DeptdetailID}}&Dept_Name={{$Deptdetailname}}')"  class="btn btn-info btn-sm">Voltage real-time</button>
             </div>
             <div class="col-6">
-                <button type="button" class="btn btn-danger btn-sm">Small button</button>
+                <button type="button" onclick="window.open('/CurrentRealtime?Dept_ID={{$DeptdetailID}}&Dept_Name={{$Deptdetailname}}')"  class="btn btn-danger btn-sm">Current real-time</button>
             </div>
           </div>
         </div>
         <hr class="break background-primary break-small break-center margin-bottom-10">
 
         <div class="line">
-        <!-- <h3 class="text-strong text-size-20 text-line-height-1 " style="margin-left:5%;">Power of Thai-Tabuchi Electric</h3> -->
-        <div class="row" style="margin-left:4%;margin-right:4%">
-  <div class="col-sm-4">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Special title treatment</h5>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-4">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Special title treatment</h5>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-4">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Special title treatment</h5>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
-      </div>
-    </div>
-  </div>
+        <div class="row" style="margin-left:15%;margin-right:10%;margin-top:0%;margin-bottom:2%;">
+        
+          <div class="s-12 s-6 l-2  card" style="margin-right:3%;">
+              <div class="float-left" style="padding: 2% 2% 2% 2%;">
+                <i class="icon-sli-energy text-secondary text-size-40 text-line-height-1"></i>
+              </div>
+              <div class="margin-left-10">
+              <h3 id="String1Index0" class="text-strong text-size-20 text-line-height-1 margin-bottom-20">LN Name ......</h3>
+                <hr>
+                <h4 id="String1Index1" class="text-strong text-size-15 text-line-height-1"style="margin-left:5%;">Power:  ??</h4>
+                <hr>
+                <h4 id="String1Index2" class="text-strong text-size-15 text-line-height-1"style="margin-left:5%;">V:  ??</h4>
+                <hr>
+                <h4 id="String1Index3" class="text-strong text-size-15 text-line-height-1"style="margin-left:5%;">I:  ??</h4>
+                <hr>
+                <h4 id="String1Index4" class="text-strong text-size-15 text-line-height-1"style="margin-left:5%;">PF:  ??</h4>
+              </div>
+          </div>
+          <div class="s-12 s-6 l-2 card " style="margin-right:3%;">
+              <div class="float-left" style="padding: 2% 2% 2% 2%;">
+                <i class="icon-sli-energy text-danger text-size-40 text-line-height-1"></i>
+              </div>
+              <div class="margin-left-10">
+              <h3 id="String2Index0" class="text-strong text-size-20 text-line-height-1 margin-bottom-20">LN Name ......</h3>
+                <hr>
+                <h4 id="String2Index1" class="text-strong text-size-15 text-line-height-1"style="margin-left:5%;">Power:  ??</h4>
+                <hr>
+                <h4 id="String2Index2" class="text-strong text-size-15 text-line-height-1"style="margin-left:5%;">V:  ??</h4>
+                <hr>
+                <h4 id="String2Index3" class="text-strong text-size-15 text-line-height-1"style="margin-left:5%;">I:  ??</h4>
+                <hr>
+                <h4 id="String2Index4" class="text-strong text-size-15 text-line-height-1"style="margin-left:5%;">PF:  ??</h4>
+              </div>
+          </div>
+          <div class="s-12 s-6 l-2 card " style="margin-right:3%;">
+              <div class="float-left" style="padding: 2% 2% 2% 2%;">
+                <i class="icon-sli-energy text-info text-size-40 text-line-height-1"></i>
+              </div>
+              <div class="margin-left-10">
+              <h3 id="String3Index0" class="text-strong text-size-20 text-line-height-1 margin-bottom-20">LN Name ......</h3>
+                <hr>
+                <h4 id="String3Index1" class="text-strong text-size-15 text-line-height-1"style="margin-left:5%;">Power:  ??</h4>
+                <hr>
+                <h4 id="String3Index2" class="text-strong text-size-15 text-line-height-1"style="margin-left:5%;">V:  ??</h4>
+                <hr>
+                <h4 id="String3Index3" class="text-strong text-size-15 text-line-height-1"style="margin-left:5%;">I:  ??</h4>
+                <hr>
+                <h4 id="String3Index4" class="text-strong text-size-15 text-line-height-1"style="margin-left:5%;">PF:  ??</h4>
+              </div>
+          </div>
+          <div class="s-12 s-6 l-2 card " style="margin-right:3%;">
+              <div class="float-left" style="padding: 2% 2% 2% 2%;">
+                <i class="icon-sli-energy text-warning text-size-40 text-line-height-1"></i>
+              </div>
+              <div class="margin-left-10">
+              <h3 id="String4Index0" class="text-strong text-size-20 text-line-height-1 margin-bottom-20">LN Name ......</h3>
+                <hr>
+                <h4 id="String4Index1" class="text-strong text-size-15 text-line-height-1"style="margin-left:5%;">Power:  ??</h4>
+                <hr>
+                <h4 id="String4Index2" class="text-strong text-size-15 text-line-height-1"style="margin-left:5%;">V:  ??</h4>
+                <hr>
+                <h4 id="String4Index3" class="text-strong text-size-15 text-line-height-1"style="margin-left:5%;">I:  ??</h4>
+                <hr>
+                <h4 id="String4Index4" class="text-strong text-size-15 text-line-height-1"style="margin-left:5%;">PF:  ??</h4>
+              </div>
+          </div>
+          <div class="s-12 s-6 l-2 card " style="margin-right:3%;">
+              <div class="float-left" style="padding: 2% 2% 2% 2%;">
+                <i class="icon-sli-energy text-primary text-size-40 text-line-height-1"></i>
+              </div>
+              <div class="margin-left-10">
+              <h3 id="String5Index0" class="text-strong text-size-20 text-line-height-1 margin-bottom-20">LN Name ......</h3>
+                <hr>
+                <h4 id="String5Index1" class="text-strong text-size-15 text-line-height-1"style="margin-left:5%;">Power:  ??</h4>
+                <hr>
+                <h4 id="String5Index2" class="text-strong text-size-15 text-line-height-1"style="margin-left:5%;">V:  ??</h4>
+                <hr>
+                <h4 id="String5Index3" class="text-strong text-size-15 text-line-height-1"style="margin-left:5%;">I:  ??</h4>
+                <hr>
+                <h4 id="String5Index4" class="text-strong text-size-15 text-line-height-1"style="margin-left:5%;">PF:  ??</h4>
+              </div>
+          </div>
 </div>
         </div>
       </section>
-      <!-- For Chart Power Overview -->
-      <script>           
-              Highcharts.chart('container', {
-                chart: {
-                  type: 'area',
-                  margin: [0, 0],
-                  zoomType: 'x',
-                  
-                
-                },
-                title: {
-                  text: 'US and USSR nuclear stockpiles'
-                },
-                subtitle: {
-                  text: null
-                },
-                xAxis: {
-                  allowDecimals: false,
-                  labels: {
-                    formatter: function () {
-                      return this.value; // clean, unformatted number for year
-                    }
-                  }
-                },
-                yAxis: {
-                  title: {
-                    text: 'Nuclear weapon states'
-                  },
-                  labels: {
-                    formatter: function () {
-                      return this.value / 1000 + 'k';
-                    }
-                  }
-                },
-                tooltip: {
-                  pointFormat: '{series.name} had stockpiled <b>{point.y:,.0f}</b><br/>warheads in {point.x}'
-                },
-                plotOptions: {
-                  
-                  area: {
-                    color: '#2BFF93',
-                    pointStart: 1940,
-                    marker: {
-                      enabled: false,
-                      symbol: 'circle',
-                      radius: 2,
-                      states: {
-                        hover: {
-                          enabled: true
-                        }
-                      }
-                    }
-                  }
-                },
-                series: [{
-                  name: 'USA',
-                  data: [
-                    null, null, null, null, null, 6, 11, 32, 110, 235,
-                    369, 640, 1005, 1436, 2063, 3057, 4618, 6444, 9822, 15468,
-                    20434, 24126, 27387, 29459, 31056, 31982, 32040, 31233, 29224, 27342,
-                    26662, 26956, 27912, 28999, 28965, 27826, 25579, 25722, 24826, 24605,
-                    24304, 23464, 23708, 24099, 24357, 24237, 24401, 24344, 23586, 22380,
-                    21004, 17287, 14747, 13076, 12555, 12144, 11009, 10950, 10871, 10824,
-                    10577, 10527, 10475, 10421, 10358, 10295, 10104, 9914, 9620, 9326,
-                    5113, 5113, 4954, 4804, 4761, 4717, 4368, 4018
-                  ]
-                }]
-              });
-        </script>
-      <!-- For Chart Power Overview -->
       <script>
           //  <!-- Ajax change Content Zone -->
-
               $( document ).ready(function() {
                 $.ajax(
                     {
-                        url: "/getEmsInsideDeptDaily",
+                        url: "/getEmsInsideDeptDaily?DeptID="+{{$DeptdetailID}},
                         type: 'GET',
                     }).done( 
                         function(data) 
@@ -244,7 +247,7 @@
               function InsiteDeptDaily(){
                     $.ajax(
                     {
-                        url: "/getEmsInsideDeptDaily",
+                        url: "/getEmsInsideDeptDaily?DeptID="+{{$DeptdetailID}},
                         type: 'GET',
                     }).done( 
                         function(data) 
@@ -258,7 +261,7 @@
               function InsiteDeptMonthly(){
                     $.ajax(
                     {
-                        url: "/getEmsInsideDeptMonthly",
+                        url: "/getEmsInsideDeptMonthly?DeptID="+{{$DeptdetailID}},
                         type: 'GET',
                     }).done( 
                         function(data) 
@@ -271,7 +274,7 @@
               function InsiteDeptYearly(){
                     $.ajax(
                     {
-                        url: "/getEmsInsideDeptYearly",
+                        url: "/getEmsInsideDeptYearly?DeptID="+{{$DeptdetailID}},
                         type: 'GET',
                     }).done( 
                         function(data) 
@@ -281,5 +284,264 @@
                     );
                     }
           // <!-- Ajax change Content Zone -->
+
+
+
+                    $.ajax(
+                    {
+                        url: "/EmsInsideString1?Dept_id="+{{$DeptdetailID}},
+                        type: 'GET',
+                    }).done( 
+                        function(data) 
+                        {
+                            data.forEach(function(value) {
+                                document.getElementById("String1Index0").innerHTML = value.Ln1;
+                                document.getElementById("String1Index1").innerHTML =  "<h4><b>Power : </b>"+" "+value.Pof1/1000+" kW</h4>";
+                                document.getElementById("String1Index2").innerHTML =  "<h4><b>V : </b>"+" "+value.Vrms1/1000+" V</h4>";
+                                document.getElementById("String1Index3").innerHTML =  "<h4><b>I : </b>"+" "+value.Irms1/1000+" I</h4>";
+                                document.getElementById("String1Index4").innerHTML =  "<h4><b>PF : </b>"+" "+value.PF1/1000+"</h4>";
+                        
+                        });
+                    }
+                    );
+
+                     $.ajax(
+                    {
+                        url: "/EmsInsideString2?Dept_id="+{{$DeptdetailID}},
+                        type: 'GET',
+                    }).done( 
+                        function(data) 
+                        {
+                            data.forEach(function(value) {
+                                document.getElementById("String2Index0").innerHTML = value.Ln2;
+                                document.getElementById("String2Index1").innerHTML =  "<h4><b>Power : </b>"+" "+value.Pof2/1000+" kW</h4>";
+                                document.getElementById("String2Index2").innerHTML =  "<h4><b>V : </b>"+" "+value.Vrms2/1000+" V</h4>";
+                                document.getElementById("String2Index3").innerHTML =  "<h4><b>I : </b>"+" "+value.Irms2/1000+" I</h4>";
+                                document.getElementById("String2Index4").innerHTML =  "<h4><b>PF : </b>"+" "+value.PF2/1000+"</h4>";
+                        
+                        });
+                    }
+                    );
+
+                       $.ajax(
+                    {
+                        url: "/EmsInsideString3?Dept_id="+{{$DeptdetailID}},
+                        type: 'GET',
+                    }).done( 
+                        function(data) 
+                        {
+                            data.forEach(function(value) {
+                                document.getElementById("String3Index0").innerHTML = value.Ln3;
+                                document.getElementById("String3Index1").innerHTML =  "<h4><b>Power : </b>"+" "+value.Pof3/1000+" kW</h4>";
+                                document.getElementById("String3Index2").innerHTML =  "<h4><b>V : </b>"+" "+value.Vrms3/1000+" V</h4>";
+                                document.getElementById("String3Index3").innerHTML =  "<h4><b>I : </b>"+" "+value.Irms3/1000+" I</h4>";
+                                document.getElementById("String3Index4").innerHTML =  "<h4><b>PF : </b>"+" "+value.PF3/1000+"</h4>";
+                        
+                        });
+                    }
+                    );
+
+                     $.ajax(
+                    {
+                        url: "/EmsInsideString4?Dept_id="+{{$DeptdetailID}},
+                        type: 'GET',
+                    }).done( 
+                        function(data) 
+                        {
+                            data.forEach(function(value) {
+                                document.getElementById("String4Index0").innerHTML = value.Ln4;
+                                document.getElementById("String4Index1").innerHTML =  "<h4><b>Power : </b>"+" "+value.Pof4/1000+" kW</h4>";
+                                document.getElementById("String4Index2").innerHTML =  "<h4><b>V : </b>"+" "+value.Vrms4/1000+" V</h4>";
+                                document.getElementById("String4Index3").innerHTML =  "<h4><b>I : </b>"+" "+value.Irms4/1000+" I</h4>";
+                                document.getElementById("String4Index4").innerHTML =  "<h4><b>PF : </b>"+" "+value.PF4/1000+"</h4>";
+                        
+                        });
+                    }
+                    );
+
+                     $.ajax(
+                    {
+                        url: "/EmsInsideString5?Dept_id="+{{$DeptdetailID}},
+                        type: 'GET',
+                    }).done( 
+                        function(data) 
+                        {
+                            data.forEach(function(value) {
+                                document.getElementById("String5Index0").innerHTML = value.Ln5;
+                                document.getElementById("String5Index1").innerHTML =  "<h4><b>Power : </b>"+" "+value.Pof5/1000+" kW</h4>";
+                                document.getElementById("String5Index2").innerHTML =  "<h4><b>V : </b>"+" "+value.Vrms5/1000+" V</h4>";
+                                document.getElementById("String5Index3").innerHTML =  "<h4><b>I : </b>"+" "+value.Irms5/1000+" I</h4>";
+                                document.getElementById("String5Index4").innerHTML =  "<h4><b>PF : </b>"+" "+value.PF5/1000+"</h4>";
+                        
+                        });
+                    }
+                    );
+
           </script>
+
+          <script>
+               setInterval(function () {
+                $.ajax(
+                    {
+                        url: "/EmsInsideString1?Dept_id="+{{$DeptdetailID}},
+                        type: 'GET',
+                    }).done( 
+                        function(data) 
+                        {
+                            console.log("String1");
+                            data.forEach(function(value) {
+                                document.getElementById("String1Index0").innerHTML = value.Ln1;
+                                document.getElementById("String1Index1").innerHTML =  "<h4><b>Power : </b>"+" "+value.Pof1/1000+" kW</h4>";
+                                document.getElementById("String1Index2").innerHTML =  "<h4><b>V : </b>"+" "+value.Vrms1/1000+" V</h4>";
+                                document.getElementById("String1Index3").innerHTML =  "<h4><b>I : </b>"+" "+value.Irms1/1000+" I</h4>";
+                                document.getElementById("String1Index4").innerHTML =  "<h4><b>PF : </b>"+" "+value.PF1/1000+"</h4>";
+                        
+                        });
+                    }
+                    );
+
+                     $.ajax(
+                    {
+                        url: "/EmsInsideString2?Dept_id="+{{$DeptdetailID}},
+                        type: 'GET',
+                    }).done( 
+                        function(data) 
+                        {
+                            console.log("String2");
+                            data.forEach(function(value) {
+                                document.getElementById("String2Index0").innerHTML = value.Ln2;
+                                document.getElementById("String2Index1").innerHTML =  "<h4><b>Power : </b>"+" "+value.Pof2/1000+" kW</h4>";
+                                document.getElementById("String2Index2").innerHTML =  "<h4><b>V : </b>"+" "+value.Vrms2/1000+" V</h4>";
+                                document.getElementById("String2Index3").innerHTML =  "<h4><b>I : </b>"+" "+value.Irms2/1000+" I</h4>";
+                                document.getElementById("String2Index4").innerHTML =  "<h4><b>PF : </b>"+" "+value.PF2/1000+"</h4>";
+                        
+                        });
+                    }
+                    );
+
+                       $.ajax(
+                    {
+                        url: "/EmsInsideString3?Dept_id="+{{$DeptdetailID}},
+                        type: 'GET',
+                    }).done( 
+                        function(data) 
+                        {
+                            console.log("String3");
+                            data.forEach(function(value) {
+                                document.getElementById("String3Index0").innerHTML = value.Ln3;
+                                document.getElementById("String3Index1").innerHTML =  "<h4><b>Power : </b>"+" "+value.Pof3/1000+" kW</h4>";
+                                document.getElementById("String3Index2").innerHTML =  "<h4><b>V : </b>"+" "+value.Vrms3/1000+" V</h4>";
+                                document.getElementById("String3Index3").innerHTML =  "<h4><b>I : </b>"+" "+value.Irms3/1000+" I</h4>";
+                                document.getElementById("String3Index4").innerHTML =  "<h4><b>PF : </b>"+" "+value.PF3/1000+"</h4>";
+                        
+                        });
+                    }
+                    );
+
+                     $.ajax(
+                    {
+                        url: "/EmsInsideString4?Dept_id="+{{$DeptdetailID}},
+                        type: 'GET',
+                    }).done( 
+                        function(data) 
+                        {
+                            console.log("String4");
+                            data.forEach(function(value) {
+                                document.getElementById("String4Index0").innerHTML = value.Ln4;
+                                document.getElementById("String4Index1").innerHTML =  "<h4><b>Power : </b>"+" "+value.Pof4/1000+" kW</h4>";
+                                document.getElementById("String4Index2").innerHTML =  "<h4><b>V : </b>"+" "+value.Vrms4/1000+" V</h4>";
+                                document.getElementById("String4Index3").innerHTML =  "<h4><b>I : </b>"+" "+value.Irms4/1000+" I</h4>";
+                                document.getElementById("String4Index4").innerHTML =  "<h4><b>PF : </b>"+" "+value.PF4/1000+"</h4>";
+                        
+                        });
+                    }
+                    );
+
+                     $.ajax(
+                    {
+                        url: "/EmsInsideString5?Dept_id="+{{$DeptdetailID}},
+                        type: 'GET',
+                    }).done( 
+                        function(data) 
+                        {
+                            console.log("String5");
+                            data.forEach(function(value) {
+                                document.getElementById("String5Index0").innerHTML = value.Ln5;
+                                document.getElementById("String5Index1").innerHTML =  "<h4><b>Power : </b>"+" "+value.Pof5/1000+" kW</h4>";
+                                document.getElementById("String5Index2").innerHTML =  "<h4><b>V : </b>"+" "+value.Vrms5/1000+" V</h4>";
+                                document.getElementById("String5Index3").innerHTML =  "<h4><b>I : </b>"+" "+value.Irms5/1000+" I</h4>";
+                                document.getElementById("String5Index4").innerHTML =  "<h4><b>PF : </b>"+" "+value.PF5/1000+"</h4>";
+                        
+                        });
+                    }
+                    );
+          }, 10000);
+          </script>
+
+<!-- Contact Form V5  -->
+<script src="ContactFrom_v5/vendor/jquery/jquery-3.2.1.min.js"></script>
+	<script src="ContactFrom_v5/vendor/animsition/js/animsition.min.js"></script>
+	<script src="ContactFrom_v5/vendor/bootstrap/js/popper.js"></script>
+	<script src="ContactFrom_v5/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="ContactFrom_v5/vendor/select2/select2.min.js"></script>
+	<!-- <script>
+		$(".js-select2").each(function(){
+			$(this).select2({
+				minimumResultsForSearch: 20,
+				dropdownParent: $(this).next('.dropDownSelect2')
+			});
+
+
+			$(".js-select2").each(function(){
+				$(this).on('select2:close', function (e){
+					if($(this).val() == "Please chooses") {
+						$('.js-show-service').slideUp();
+					}
+					else {
+						$('.js-show-service').slideUp();
+						$('.js-show-service').slideDown();
+					}
+				});
+			});
+		})
+	</script> -->
+	<script src="ContactFrom_v5/vendor/daterangepicker/moment.min.js"></script>
+	<script src="ContactFrom_v5/vendor/daterangepicker/daterangepicker.js"></script>
+	<script src="ContactFrom_v5/vendor/countdowntime/countdowntime.js"></script>
+	<!-- <script src="ContactFrom_v5/vendor/noui/nouislider.min.js"></script> -->
+	<!-- <script>
+	    var filterBar = document.getElementById('filter-bar');
+
+	    noUiSlider.create(filterBar, {
+	        start: [ 1500, 3900 ],
+	        connect: true,
+	        range: {
+	            'min': 1500,
+	            'max': 7500
+	        }
+	    });
+
+	    var skipValues = [
+	    document.getElementById('value-lower'),
+	    document.getElementById('value-upper')
+	    ];
+
+	    filterBar.noUiSlider.on('update', function( values, handle ) {
+	        skipValues[handle].innerHTML = Math.round(values[handle]);
+	        $('.contact100-form-range-value input[name="from-value"]').val($('#value-lower').html());
+	        $('.contact100-form-range-value input[name="to-value"]').val($('#value-upper').html());
+	    });
+	</script> -->
+	<script src="ContactFrom_v5/js/main.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-23581568-13');
+</script>
+<!-- Contact Form V5  -->
 @endsection

@@ -448,6 +448,7 @@ setInterval(function () {
     // Interval Time Total Energy this day
     setInterval(function () 
             {
+                
                   $.ajax(
                       {
                       url: "/EMSGetThisMonthenergyOverview",
@@ -461,7 +462,7 @@ setInterval(function () {
                       );
                   $.ajax(
                       {
-                      url: "/EMSGetlastupdatetime",
+                      url: "/EMSGetlastupdatetimeInside",
                       type: 'GET',   
                       }).done( 
                       function(Lastupdatetime) 

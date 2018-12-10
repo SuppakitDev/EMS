@@ -101,3 +101,37 @@ Route::get('/EMSGetComparewithlastyear','EMSYearlyController@EMSGetComparewithla
 Route::get('/EMSGetDepartmentConparethisYear','EMSYearlyController@EMSGetDepartmentConparethisYear');
 Route::get('/EMSGetThisYearenergyOverview','EMSYearlyController@EMSGetThisYearenergyOverview');
 
+// Inside Dept Zone
+Route::get('/EMSGetInsideRealtimepowerDaily','InsidedeptController@EMSGetInsideRealtimepowerDaily');
+Route::get('/EMSGettotalInsideenergy','InsidedeptController@EMSGettotalInsideenergy');
+Route::get('/EMSGetrealtimeInsidepower','InsidedeptController@EMSGetrealtimeInsidepower');
+Route::get('/EMSGetlastupdatetimeInside','InsidedeptController@EMSGetlastupdatetimeInside');
+
+Route::get('/MonthlyEnergychartInside','EMSMonthlyController@MonthlyEnergychartInside');
+Route::get('/EMSGetThisMonthenergyInside','EMSMonthlyController@EMSGetThisMonthenergyInside');
+
+
+Route::get('/YearlyEnergychartInside','EMSYearlyController@YearlyEnergychartInside');
+Route::get('/EMSGetThisYearenergyInside','EMSYearlyController@EMSGetThisYearenergyInside');
+
+Route::get('/EmsInsideString1','InsidedeptController@EmsInsideString1');
+Route::get('/EmsInsideString2','InsidedeptController@EmsInsideString2');
+Route::get('/EmsInsideString3','InsidedeptController@EmsInsideString3');
+Route::get('/EmsInsideString4','InsidedeptController@EmsInsideString4');
+Route::get('/EmsInsideString5','InsidedeptController@EmsInsideString5');
+
+Route::get('/EmsInsideCustomDate','InsidedeptController@EmsInsideCustomDate');
+Route::get('/EmsgetInsidePowerCustomDate','InsidedeptController@EmsgetInsidePowerCustomDate');
+Route::get('/EmsgetInsideEnergyCustomDate','InsidedeptController@EmsgetInsideEnergyCustomDate');
+
+Route::get('/VoltageRealtime','InsidedeptController@VoltageRealtime');
+Route::get('/CurrentRealtime','InsidedeptController@CurrentRealtime');
+
+Route::get('/EmsgetVoltageRealtime','InsidedeptController@EmsgetVoltageRealtime');
+Route::get('/EmsgetCurrentRealtime','InsidedeptController@EmsgetCurrentRealtime');
+
+
+
+
+
+

@@ -44,3 +44,56 @@ jQuery(document).ready(function($) {
     }
   });
 });
+
+
+$(function() {
+
+  $('#Daily-link').click(function(e) {
+  $("#Daily-form").delay(100).fadeIn(100);
+   $("#Monthly-form").fadeOut(100);
+   $("#Yearly-form").fadeOut(100);
+   $("#Customrange-form").fadeOut(100);
+  $('#Monthly-link').removeClass('active');
+  $('#Yearly-link').removeClass('active');
+  $('#Customrange-link').removeClass('active');
+  $(this).addClass('active');
+  e.preventDefault();
+});
+
+$('#Monthly-link').click(function(e) {
+  $("#Monthly-form").delay(100).fadeIn(100);
+  $("#Daily-form").fadeOut(100);
+  $("#Yearly-form").fadeOut(100);
+  $("#Customrange-form").fadeOut(100);
+   $('#Daily-link').removeClass('active');
+   $('#Yearly-link').removeClass('active');
+   $('#Customrange-link').removeClass('active');
+  $(this).addClass('active');
+  e.preventDefault();
+});
+
+$('#Yearly-link').click(function(e) {
+  $("#Yearly-form").delay(100).fadeIn(100);
+  $("#Daily-form").fadeOut(100);
+  $("#Monthly-form").fadeOut(100);
+  $("#Customrange-form").fadeOut(100);
+   $('#Monthly-link').removeClass('active');
+   $('#Daily-link').removeClass('active');
+   $('#Customrange-link').removeClass('active');
+  $(this).addClass('active');
+  e.preventDefault();
+});
+
+$('#Customrange-link').click(function(e) {
+  $("#Customrange-form").delay(100).fadeIn(100);
+  $("#Daily-form").fadeOut(100);
+  $("#Monthly-form").fadeOut(100);
+  $("#Yearly-form").fadeOut(100);
+   $('#Monthly-link').removeClass('active');
+   $('#Yearly-link').removeClass('active');
+   $('#Daily-link').removeClass('active');
+  $(this).addClass('active');
+  e.preventDefault();
+});
+
+});

@@ -102,6 +102,18 @@
                 <input type="text" class="form-control" name="Display_list" id="Display_list" value="{{$companys->Display_list}}">
               </div>
             </div>
+
+             <div class="form-row">
+              <div class="form-group col-md-4">
+                <label for="Longitude">Address</label>
+                <textarea rows="4" cols="50" name="Address" >{{$companys->Address}}</textarea>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="Display_list">Email</label>
+                <input type="email" class="form-control" name="Email" id="Email" value="{{$companys->Email}}">
+              </div>
+            </div>
+
             <div class="form-row">
               <div class="form-group col-md-4">
                 <label for="Tel">Tel</label>
@@ -163,6 +175,18 @@
                 <input type="text" class="form-control" name="Display_list" id="Display_list" placeholder="Display_list">
               </div>
             </div>
+
+             <div class="form-row">
+              <div class="form-group col-md-4">
+                <label for="Longitude">Address</label>
+                <textarea rows="4" cols="50" name="Address" placeholder="Address Here" ></textarea>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="Display_list">Email</label>
+                <input type="email" class="form-control" name="Email" id="Email" placeholder="Email">
+              </div>
+            </div>
+
             <div class="form-row">
               <div class="form-group col-md-4">
                 <label for="Tel">Tel</label>

@@ -124,17 +124,82 @@
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Electric charge</h5>
+                <h5 class="modal-title" style="color:black;font-weight:bold;margin:2% 0% 0% 2%;" id="exampleModalLabel">Electric charge</h5>
                 <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"> -->
                   <!-- <span aria-hidden="true">&times;</span> -->
                 <!-- </button> -->
               </div>
               <div class="modal-body">
-                ...
+              <div class="row">
+			<div class="col-md-12 col-md-offset-3">
+				<div class="panel panel-login">
+					<div class="panel-heading">
+						<div class="row">
+            <!-- Script ฝากไว้ที่ไฟล์ C:\xampp\htdocs\EMS\public\Main-layout\js\template-scripts.js -->
+            <!-- CSS ฝากไว้ที่ไฟล์ C:\xampp\htdocs\EMS\public\Main-layout\css\icons.css -->
+							<div class="col-6">
+								<a href="#" class="active" id="Electricity-link">Electricity charge.</a>  
+							</div>
+							<div class="col-6">
+								<a href="#" id="Money-link">Set New Moneyrate.</a>
+							</div>
+						</div>
+						<hr>
+					</div>
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-lg-12">
+                <!-- Form ElectricExportBill -->
+								<form id="Electricity-form" action="/ElectricityChargeBill_Preview" method="get" role="form" style="display: block;">
+									<div class="form-group">
+                  <label for="ElectricDepartment" style="color:black;font-weight:bold;margin:2% 0% 0% 2%;">Select Department <p>(Choose more than one option.)</p></label><br>
+                    @foreach($Department as $Departments)
+                    <input type="checkbox"  name="ElectricDepartment[]" value="{{$Departments->id}}" style="margin-left:3%" checked> {{$Departments->Dept_Name}} 
+                    @endforeach
+									</div>
+                  <div class="form-group">
+                  <label for="ElectricMonthSelect" style="color:black;font-weight:bold;margin:2% 0% 2% 2%;">Select Month</label><br>
+										<input type="month" name="ElectricMonthSelect" id="ElectricMonthSelect" tabindex="1" class="form-control" placeholder="SelectMonth" value="" required>
+                  </div>
+                  <div class="form-group">
+                  <label for="moneyrate" style="color:black;font-weight:bold;margin:2% 0% 2% 2%;">Money Rate.</label><br>
+										<input type="number" name="moneyrate" id="moneyrate" tabindex="1" class="form-control"  value="{{$Money_rate}}" disabled>
+									</div>
+									<div class="form-group">
+										<div class="row" >
+                    <div class="col-sm-12 col-sm-offset-6 " >
+												<input type="submit"  tabindex="4" class="form-control  btn btn-success" value="EXPORT BILL" >
+											</div>
+										</div>
+									</div>
+                </form>
+                <!-- Form Setnewmoneyrate -->
+								<form id="Money-form" action="/Setnewmoneyrate" method="get" role="form" style="display: none;">
+                  <div class="form-group">
+                  <label for="Moneyrate" style="color:black;font-weight:bold;margin:2% 0% 2% 2%;">Set new money rate.</label><br>
+										<input  name="Moneyrate" id="Moneyrate" tabindex="1" class="form-control" value="{{$Money_rate}}"  required>
+                  </div>
+                  
+									<div class="form-group">
+										<div class="row" >
+											<div class="col-sm-12 col-sm-offset-6 " >
+												<input type="submit"  tabindex="4" class="form-control  btn btn-info" value="SAVE MONEY RATE" >
+											</div>
+										</div>
+									</div>
+                </form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-success">Save changes</button>
+              <div class="col-4">
+                <button type="button" class="btn btn-secondary"  data-dismiss="modal">Close</button>
+                <!-- <button type="button" class="btn btn-success">Save changes</button> -->
+                </div>
               </div>
             </div>
           </div>
@@ -196,85 +261,85 @@
 						<div class="row">
 							<div class="col-lg-12">
                 <!-- Form Daily -->
-								<form id="Daily-form" action="/CsvExportDaily" method="post" role="form" style="display: block;">
+								<form id="Daily-form" action="/CsvExportDaily" method="get" role="form" style="display: block;">
 									<div class="form-group">
                   <label for="DayDepartment" style="color:black;font-weight:bold;margin:2% 0% 0% 2%;">Select Department <p>(Choose more than one option.)</p></label><br>
                     @foreach($Department as $Departments)
-                    <input type="checkbox" id="DayDepartment" name="DayDepartment" value="{{$Departments->Dept_Name}}" style="margin-left:3%"> {{$Departments->Dept_Name}} 
+                    <input type="checkbox"  name="DayDepartment[]" value="{{$Departments->id}}" style="margin-left:3%" checked> {{$Departments->Dept_Name}} 
                     @endforeach
 									</div>
                   <div class="form-group">
                   <label for="DaySelect" style="color:black;font-weight:bold;margin:2% 0% 2% 2%;">Select Date</label><br>
-										<input type="date" name="DaySelect" id="DaySelect" tabindex="1" class="form-control" placeholder="SelectDate" value="">
+										<input type="date" name="DaySelect" id="DaySelect" tabindex="1" class="form-control" placeholder="SelectDate" value="" required>
 									</div>
 									<div class="form-group">
 										<div class="row" >
-											<div class="col-sm-6 col-sm-offset-6 " >
-												<input type="submit"  tabindex="4" class="form-control  btn btn-success" value="EXPORT DAILY" style="margin-left:50%;">
+                    <div class="col-sm-12 col-sm-offset-6 " >
+												<input type="submit"  tabindex="4" class="form-control  btn btn-success" value="EXPORT DAILY" >
 											</div>
 										</div>
 									</div>
                 </form>
                 <!-- Form Monthly -->
-								<form id="Monthly-form" action="/CsvExportMonthly" method="post" role="form" style="display: none;">
+								<form id="Monthly-form" action="/CsvExportMonthly" method="get" role="form" style="display: none;">
                   <div class="form-group">
                   <label for="MonthDepartment" style="color:black;font-weight:bold;margin:2% 0% 0% 2%;">Select Department <p>(Choose more than one option.)</p></label><br>
                     @foreach($Department as $Departments)
-                    <input type="checkbox" id="MonthDepartment" name="MonthDepartment" value="{{$Departments->Dept_Name}}" style="margin-left:3%"> {{$Departments->Dept_Name}} 
+                    <input type="checkbox"  name="MonthDepartment[]" value="{{$Departments->id}}" style="margin-left:3%" checked> {{$Departments->Dept_Name}} 
                     @endforeach
 									</div>
                   <div class="form-group">
                   <label for="MonthSelect" style="color:black;font-weight:bold;margin:2% 0% 2% 2%;">Select Month</label><br>
-										<input type="month" name="MonthSelect" id="MonthSelect" tabindex="1" class="form-control" placeholder="SelectMonth" value="">
+										<input type="month" name="MonthSelect" id="MonthSelect" tabindex="1" class="form-control" placeholder="SelectMonth" value="" required>
 									</div>
 									<div class="form-group">
 										<div class="row" >
-											<div class="col-sm-6 col-sm-offset-6 " >
-												<input type="submit"  tabindex="4" class="form-control  btn btn-info" value="EXPORT MONTHLY" style="margin-left:50%;">
+											<div class="col-sm-12 col-sm-offset-6 " >
+												<input type="submit"  tabindex="4" class="form-control  btn btn-info" value="EXPORT MONTHLY" >
 											</div>
 										</div>
 									</div>
                 </form>
                 <!-- Form Yearly -->
-								<form id="Yearly-form" action="/CsvExportYearly" method="post" role="form" style="display: none;">
+								<form id="Yearly-form" action="/CsvExportYearly" method="get" role="form" style="display: none;">
 									<div class="form-group">
                   <label for="YearDepartment" style="color:black;font-weight:bold;margin:2% 0% 0% 2%;">Select Department <p>(Choose more than one option.)</p></label><br>
                     @foreach($Department as $Departments)
-                    <input type="checkbox" id="YearDepartment" name="YearDepartment" value="{{$Departments->Dept_Name}}" style="margin-left:3%"> {{$Departments->Dept_Name}} 
+                    <input type="checkbox"  name="YearDepartment[]"  value="{{$Departments->id}}" style="margin-left:3%" checked > {{$Departments->Dept_Name}} 
                     @endforeach
 									</div>
                   <div class="form-group">
                   <label for="YearSelect" style="color:black;font-weight:bold;margin:2% 0% 2% 2%;">Select Year</label><br>
-                  <input type="number"  name="YearSelect"   class="form-control" min="2017" value="2018" max="2100"><br>
+                  <input type="number"  name="YearSelect"   class="form-control" min="2017" value="2018" max="2100" required><br>
 									</div>
 									<div class="form-group">
 										<div class="row" >
-											<div class="col-sm-6 col-sm-offset-6 " >
-												<input type="submit"  tabindex="4" class="form-control  btn btn-danger" value="EXPORT Yearly" style="margin-left:50%;">
+                    <div class="col-sm-12 col-sm-offset-6 " >
+												<input type="submit"  tabindex="4" class="form-control  btn btn-danger" value="EXPORT Yearly" >
 											</div>
 										</div>
 									</div>
                 </form>
                 <!-- Form Customrange -->
-								<form id="Customrange-form" action="/CsvExportCustomdate" method="post" role="form" style="display: none;">
+								<form id="Customrange-form" action="/CsvExportCustomdate" method="get" role="form" style="display: none;">
 									<div class="form-group">
                   <label for="CusDepartment" style="color:black;font-weight:bold;margin:2% 0% 0% 2%;">Select Department <p>(Choose more than one option.)</p></label><br>
                     @foreach($Department as $Departments)
-                    <input type="checkbox" id="CusDepartment" name="CusDepartment" value="{{$Departments->Dept_Name}}" style="margin-left:3%"> {{$Departments->Dept_Name}} 
+                    <input type="checkbox"  name="CusDepartment[]"  value="{{$Departments->id}}" style="margin-left:3%" checked > {{$Departments->Dept_Name}} 
                     @endforeach
 									</div>
                   <div class="form-group">
                   <label for="CusSelectStart" style="color:black;font-weight:bold;margin:2% 0% 2% 2%;">Select Date</label><br>
-										<input type="date" name="CusSelectStart" id="CusSelectStart" tabindex="1" class="form-control" placeholder="SelectStartDate" value="">
+										<input type="date" name="CusSelectStart" id="CusSelectStart" tabindex="1" class="form-control" placeholder="SelectStartDate" value="" required>
 									</div>
                   <div class="form-group">
                   <label for="CusSelectStop" style="color:black;font-weight:bold;margin:2% 0% 2% 2%;">Select Date</label><br>
-										<input type="date" name="CusSelectStop" id="CusSelectStop" tabindex="1" class="form-control" placeholder="SelectStopDate" value="">
+										<input type="date" name="CusSelectStop" id="CusSelectStop" tabindex="1" class="form-control" placeholder="SelectStopDate" value="" required>
 									</div>
 									<div class="form-group">
 										<div class="row" >
-											<div class="col-sm-6 col-sm-offset-6 " >
-												<input type="submit"  tabindex="4" class="form-control  btn btn-warning" value="EXPORT CUSTOM RANGE" style="margin-left:50%;">
+                    <div class="col-sm-12 col-sm-offset-6 " >
+												<input type="submit"  tabindex="4" class="form-control  btn btn-warning" value="EXPORT CUSTOM RANGE" >
 											</div>
 										</div>
 									</div>
@@ -533,3 +598,35 @@
 </body>
 </html>
 
+<script>
+// Install input filters.
+// setInputFilter(document.getElementById("intTextBox"), function(value) {
+//   return /^-?\d*$/.test(value); });
+// setInputFilter(document.getElementById("intLimitTextBox"), function(value) {
+//   return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 1500); });
+// setInputFilter(document.getElementById("uintTextBox"), function(value) {
+//   return /^\d*$/.test(value); });
+// setInputFilter(document.getElementById("hexTextBox"), function(value) {
+//   return /^[0-9a-f]*$/i.test(value); });
+setInputFilter(document.getElementById("Moneyrate"), function(value) {
+  return /^-?\d*[.,]?\d*$/.test(value); });
+// setInputFilter(document.getElementById("currencyTextBox"), function(value) {
+//   return /^-?\d*[.,]?\d{0,2}$/.test(value); });
+
+
+// Restricts input for the given textbox to the given inputFilter.
+function setInputFilter(textbox, inputFilter) {
+  ["input", "keydown", "keyup", "mousedown", "mouseup", "select", "contextmenu", "drop"].forEach(function(event) {
+    textbox.addEventListener(event, function() {
+      if (inputFilter(this.value)) {
+        this.oldValue = this.value;
+        this.oldSelectionStart = this.selectionStart;
+        this.oldSelectionEnd = this.selectionEnd;
+      } else if (this.hasOwnProperty("oldValue")) {
+        this.value = this.oldValue;
+        this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+      }
+    });
+  });
+}
+</script>

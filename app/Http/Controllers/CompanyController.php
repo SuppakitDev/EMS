@@ -47,6 +47,8 @@ class CompanyController extends Controller
         $company->lat = $request->Latitude;
         $company->lon = $request->Longitude;
         $company->Display_list = $request->Display_list;
+        $company->Address = $request->Address;
+        $company->Email = $request->Email;
         $company->Tel = $request->Tel;
         $company->Money_rate = $request->Money_rate;
         $company->save(); 
@@ -91,6 +93,8 @@ class CompanyController extends Controller
         $company->lat = $request->Latitude;
         $company->lon = $request->Longitude;
         $company->Display_list = $request->Display_list;
+        $company->Address = $request->Address;
+        $company->Email = $request->Email;
         $company->Tel = $request->Tel;
         $company->Money_rate = $request->Money_rate;
         $company->save();

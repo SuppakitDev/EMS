@@ -131,7 +131,30 @@ Route::get('/EmsgetVoltageRealtime','InsidedeptController@EmsgetVoltageRealtime'
 Route::get('/EmsgetCurrentRealtime','InsidedeptController@EmsgetCurrentRealtime');
 
 
+Route::get('/CsvExportDaily','EmsExportCsvController@CsvExportDaily');
+Route::get('/CsvExportMonthly','EmsExportCsvController@CsvExportMonthly');
+Route::get('/CsvExportYearly','EmsExportCsvController@CsvExportYearly');
+Route::get('/CsvExportCustomdate','EmsExportCsvController@CsvExportCustomdate');
 
 
+
+
+// Route::get('/Testpdf', function () {
+//     return view('PDFExport.ElectricityChargePreview');
+//     // $pdf = PDF::loadView('PDFExport.ElectricityCharge');
+//     // return $pdf->download('ElectricityCharge.pdf');
+// });
+
+
+// Route::get('/Testpdf-Export', function () {
+//     // return view('PDFExport.ElectricityCharge');
+//     $pdf = PDF::loadView('PDFExport.ElectricityCharge')->setPaper('a4', 'landscape')->setWarnings(false);
+//     return $pdf->download('ElectricityCharge.pdf');
+// });
+
+Route::get('/ElectricityChargeBill_Preview','ElectricityChargeController@ElectricityChargeBill_Preview');
+Route::get('/ElectricityChargeBill_Export','ElectricityChargeController@ElectricityChargeBill_Export');
+
+Route::get('/Setnewmoneyrate','ElectricityChargeController@Setnewmoneyrate');
 
 

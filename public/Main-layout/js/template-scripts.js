@@ -95,5 +95,25 @@ $('#Customrange-link').click(function(e) {
   $(this).addClass('active');
   e.preventDefault();
 });
+// Electricity Charge
+$('#Electricity-link').click(function(e) {
+  $("#Electricity-form").delay(100).fadeIn(100);
+
+  $("#Money-form").fadeOut(100);
+
+   $('#Money-link').removeClass('active');
+  $(this).addClass('active');
+  e.preventDefault();
+});
+
+$('#Money-link').click(function(e) {
+  $("#Money-form").delay(100).fadeIn(100);
+
+  $("#Electricity-form").fadeOut(100);
+
+   $('#Electricity-link').removeClass('active');
+  $(this).addClass('active');
+  e.preventDefault();
+});
 
 });

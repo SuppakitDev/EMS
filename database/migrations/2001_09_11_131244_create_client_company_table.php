@@ -19,6 +19,8 @@ class CreateClientCompanyTable extends Migration
             $table->float('lat');
             $table->float('lon');
             $table->string('Display_list');
+            $table->string('Address');
+            $table->string('Email');
             $table->string('Tel',10);
             $table->integer('Money_rate');
             $table->timestamps();

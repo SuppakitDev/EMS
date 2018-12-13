@@ -33,12 +33,23 @@ class InsidedeptController extends Controller
                         $Deptdetailname = $Deptdetails->Dept_Name;
                         $DeptdetailID = $Deptdetails->id;
                     }
+        
+        $Money_rate = DB::table('client_company')
+                    ->where('id','=',Auth::user()->C_ID)
+                    ->select('Money_rate')
+                    ->get();
+                    foreach($Money_rate as $Money_rates )
+                    {
+                        $Money_rate = $Money_rates->Money_rate;
+                    }
+
         return view("Content/Manager/InsideDept",
         [
             'Building' => $Building,
             'Department' => $Department,
             'Deptdetailname' => $Deptdetailname,
             'DeptdetailID' => $DeptdetailID,
+            'Money_rate' => $Money_rate,
         ]);
     }
 

@@ -180,7 +180,7 @@
 
 <button style="margin-left:5%;" class="btn btn-success" onclick="window.location.href='/filtermember'"> <span class="glyphicon glyphicon-arrow-left"></span> BACK TO HOME</button>
 
-<button style="margin-left:65%;" class="btn btn-danger" onclick="window.location.href='/ElectricityChargeBill_Export?ElectricDepartment={{$DeptID}}&ElectricMonthSelect=2018-12'"> <span class="glyphicon glyphicon-save-file"></span> EXPORT TO PDF</button>
+<button style="margin-left:65%;" class="btn btn-danger" onclick="window.location.href='/ElectricityChargeBill_Export?ElectricDepartment={{$DeptID}}&ElectricMonthSelect={{$Monthshow}}'"> <span class="glyphicon glyphicon-save-file"></span> EXPORT TO PDF</button>
 </div>
 </div>
 </body>

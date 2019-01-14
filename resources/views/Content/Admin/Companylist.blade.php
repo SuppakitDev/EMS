@@ -65,6 +65,7 @@
                     <td class="td-actions">
                         <a href="/Gotothiscompany?ID={{$companys->id}}"><img src="Admin-layout/img/exit.png" style="width:25px;" ></a>
                         <a href="/Addusertocompany?ID={{$companys->id}}"><img src="Admin-layout/img/add-user.png" style="width:25px;" ></a>
+                        <a href="/Adddisplaytocompany?ID={{$companys->id}}"><img src="Admin-layout/img/display.png" style="width:25px;" ></a>
                         <a href="#Company{{$companys->id}}" data-toggle="modal"><img src="Admin-layout/img/document.png" style="width:25px;" ></a>
                         <a > <?= Form::open(array('url' => 'Company/'.$companys->id,'method'=>'DELETE')) ?>
                               <button type="submit" style="padding: 0;border: none;background: none;" onclick="return confirm('Are you sure? This will remove this Company.')" ><img src="Admin-layout/img/sd-card.png" style="width:25px;" ></span></button>

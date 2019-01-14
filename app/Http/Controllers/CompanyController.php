@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\client_company;
 use App\building;
+use App\Display_list;
 use App\department;
 use App\User;
 use Alert;
@@ -320,6 +321,102 @@ class CompanyController extends Controller
 
             // return $Username;
     }
+
+    public function Adddisplaytocompany()
+    {
+        $companyid = Input::get('ID');
+        $Company = DB::table('client_company')
+        ->where('id', '=', $companyid)
+        ->get();
+
+        $Display = DB::table('display_lists')
+        ->where('C_ID', '=', $companyid)
+        ->get();
+        
+        
+        return view('Content\Admin\CompanyDisplay',
+        [
+            'Company' => $Company,
+            'Display' => $Display,
+        ]);
+    }
+
+    public function AddDisplay()
+    {
+        $SerialNo = Input::get('SerialNo');
+        $Display_No = Input::get('Display_No');
+        $C_ID = Input::get('C_ID');
+        
+        $Display_list = new Display_list();
+        $Display_list->C_ID = $C_ID;
+        $Display_list->SerialNo =  $SerialNo;
+        $Display_list->Dis_Number = $Display_No;
+        $Display_list->save();
+
+        // ส่วน Update Display_list ของ Company
+        $Display = DB::table('display_lists')
+        ->where('C_ID', '=', $C_ID)
+        ->select('Dis_Number')
+        ->get();
+        foreach($Display as $Displays)
+                {
+                    $DisplayList[] = $Displays->Dis_Number;
+                }
+        $Display_list = implode(',',$DisplayList);
+
+        $Conpany = client_company::find($C_ID);
+        $Conpany->Display_list = $Display_list;
+        $Conpany->save();
+
+        alert()->success('This Display Added.', 'Success!');
+        return redirect()->Back(); 
+    }
+
+    public function RemoveDisplay()
+    {
+        $ID = Input::get('ID');
+        $display_lists = Display_list::find($ID);
+        $display_lists->delete();
+        Alert::warning('This Display Removed.', 'Complete!');                       
+        return redirect()->Back();
+    }
+
+
+    public function EditDisplay()
+    {
+        $ID = Input::get('ID');
+        $SerialNo = Input::get('SerialNo');
+        $Display_No = Input::get('Display_No');
+        $C_ID = Input::get('C_ID');
+
+        $Display_list = Display_list::find($ID);
+        $Display_list->C_ID = $C_ID;
+        $Display_list->SerialNo =  $SerialNo;
+        $Display_list->Dis_Number = $Display_No;
+        $Display_list->save();
+        
+        // ส่วน Update Display_list ของ Company
+        $Display = DB::table('display_lists')
+        ->where('C_ID', '=', $C_ID)
+        ->select('Dis_Number')
+        ->get();
+        foreach($Display as $Displays)
+                {
+                    $DisplayList[] = $Displays->Dis_Number;
+                }
+        $Display_list = implode(',',$DisplayList);
+
+        $Conpany = client_company::find($C_ID);
+        $Conpany->Display_list = $Display_list;
+        $Conpany->save();
+        alert()->success('This Display Changed.', 'Success!');
+        return redirect()->Back();
+
+        
+    } 
+
+
+
 
 
 

@@ -44,16 +44,23 @@ Route::get('/getEmsInsideDeptYearly','InsidedeptController@getEmsInsideDeptYearl
 Route::get('/Gotothiscompany','CompanyController@Gotothiscompany');
 Route::post('/Addbuilding','CompanyController@Addbuilding');
 
+Route::post('/AddDisplay','CompanyController@AddDisplay');
+Route::get('/RemoveDisplay','CompanyController@RemoveDisplay');
+
+
 Route::get('/getdisplaylist','CompanyController@getdisplaylist');
 Route::post('/Adddepartment','CompanyController@Adddepartment');
 
 Route::get('/RemoveBuilding','CompanyController@RemoveBuilding');
 Route::get('/RemoveDepartment','CompanyController@RemoveDepartment');
+Route::get('/EditDisplay','CompanyController@EditDisplay');
+
 
 Route::get('/EditBuilding','CompanyController@EditBuilding');
 Route::get('/EditDepartment','CompanyController@EditDepartment');
 
 Route::get('/Addusertocompany','CompanyController@Addusertocompany');
+Route::get('/Adddisplaytocompany','CompanyController@Adddisplaytocompany');
 Route::get('/RemoveMember','CompanyController@RemoveMember');
 
 

@@ -119,6 +119,7 @@ $('#gotohome').click(function() {
           },
     plotOptions: {
         series: {
+            turboThreshold:0,
         borderColor: 'transparent'
             },
     area: {

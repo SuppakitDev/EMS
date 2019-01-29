@@ -58,17 +58,19 @@ class FiltermemberController extends Controller
                 ->groupBy('Dis_Date')
                 ->get();
                 // แยกข้อมูลออกจาก Array
+                $MaxApf1 = 0;
+                $MinApf1 = 0;
                 foreach($MaxApf as $MaxApfs )
                 {
-                    $MaxApf = $MaxApfs->total_Apf;
+                    $MaxApf1 = $MaxApfs->total_Apf;
                 }
                 // แยกข้อมูลออกจาก Array
                 foreach($MinApf as $MinApfs )
                 {
-                    $MinApf = $MinApfs->total_Apf;
+                    $MinApf1 = $MinApfs->total_Apf;
                 }
                 // มากสุด - น้อยสุด เพื่อหาพลังงานทั้งหมด
-                $Totalenergy = $MaxApf - $MinApf;
+                $Totalenergy = $MaxApf1 - $MinApf1;
 
                 $Realtimepower = DB::table('ems_overview')
                     ->where('C_ID','=',Auth::user()->C_ID)

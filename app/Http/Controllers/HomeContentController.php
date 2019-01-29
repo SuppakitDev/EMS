@@ -46,17 +46,19 @@ class HomeContentController extends Controller
         ->groupBy('Dis_Date')
         ->get();
         // แยกข้อมูลออกจาก Array
+        $MaxApf1 = 0;
+        $MinApf1 = 0;
         foreach($MaxApf as $MaxApfs )
         {
-            $MaxApf = $MaxApfs->total_Apf;
+            $MaxApf1 = $MaxApfs->total_Apf;
         }
         // แยกข้อมูลออกจาก Array
         foreach($MinApf as $MinApfs )
         {
-            $MinApf = $MinApfs->total_Apf;
+            $MinApf1 = $MinApfs->total_Apf;
         }
         // มากสุด - น้อยสุด เพื่อหาพลังงานทั้งหมด
-        $Totalenergythisday = $MaxApf - $MinApf;
+        $Totalenergythisday = $MaxApf1 - $MinApf1;
 
         $Realtimepower = DB::table('ems_overview')
         ->where('C_ID','=',Auth::user()->C_ID)
@@ -142,17 +144,19 @@ class HomeContentController extends Controller
         ->groupBy('Dis_Date')
         ->get();
         // แยกข้อมูลออกจาก Array
+        $MaxApf1 = 0;
+        $MinApf1 = 0;
         foreach($MaxApf as $MaxApfs )
         {
-            $MaxApf = $MaxApfs->total_Apf;
+            $MaxApf1 = $MaxApfs->total_Apf;
         }
         // แยกข้อมูลออกจาก Array
         foreach($MinApf as $MinApfs )
         {
-            $MinApf = $MinApfs->total_Apf;
+            $MinApf1 = $MinApfs->total_Apf;
         }
         // มากสุด - น้อยสุด เพื่อหาพลังงานทั้งหมด
-        $TotalenergythisMonth = $MaxApf - $MinApf;
+        $TotalenergythisMonth = $MaxApf1 - $MinApf1;
 
         $Realtimepower = DB::table('ems_overview')
         ->where('C_ID','=',Auth::user()->C_ID)
@@ -236,17 +240,19 @@ class HomeContentController extends Controller
         ->groupBy('Dis_Date')
         ->get();
         // แยกข้อมูลออกจาก Array
+        $MaxApf1 = 0;
+        $MinApf1 = 0;
         foreach($MaxApf as $MaxApfs )
         {
-            $MaxApf = $MaxApfs->total_Apf;
+            $MaxApf1 = $MaxApfs->total_Apf;
         }
         // แยกข้อมูลออกจาก Array
         foreach($MinApf as $MinApfs )
         {
-            $MinApf = $MinApfs->total_Apf;
+            $MinApf1 = $MinApfs->total_Apf;
         }
         // มากสุด - น้อยสุด เพื่อหาพลังงานทั้งหมด
-        $TotalenergythisMonth = $MaxApf - $MinApf;
+        $TotalenergythisMonth = $MaxApf1 - $MinApf1;
 
         $Realtimepower = DB::table('ems_overview')
         ->where('C_ID','=',Auth::user()->C_ID)
@@ -331,17 +337,19 @@ class HomeContentController extends Controller
         ->groupBy('Dis_Date')
         ->get();
         // แยกข้อมูลออกจาก Array
+        $MaxApf1 = 0;
+        $MinApf1 = 0;
         foreach($MaxApf as $MaxApfs )
         {
-            $MaxApf = $MaxApfs->total_Apf;
+            $MaxApf1 = $MaxApfs->total_Apf;
         }
         // แยกข้อมูลออกจาก Array
         foreach($MinApf as $MinApfs )
         {
-            $MinApf = $MinApfs->total_Apf;
+            $MinApf1 = $MinApfs->total_Apf;
         }
         // มากสุด - น้อยสุด เพื่อหาพลังงานทั้งหมด
-        $Totalenergy = $MaxApf - $MinApf;
+        $Totalenergy = $MaxApf1 - $MinApf1;
         return Response::json($Totalenergy, 200, [], JSON_NUMERIC_CHECK); 
     }
 
@@ -391,13 +399,14 @@ class HomeContentController extends Controller
         {
             $ID = $Departments->id;
             $Name = $Departments->Dept_Name;
+            $ThistimeenergyMIN1 = 0;
+            $ThistimeenergyMAX1 = 0;
 
             $ThistimeenergyMIN = DB::table('ems_overview')
                     ->where('C_ID','=',Auth::user()->C_ID)
                     ->where('D_ID','=',$ID)
                     ->where('Dis_Date','=',function($query){
                         $Date = Input::get('date');
-
                         $query->select(DB::raw('MIN(Dis_Date)'))
                         ->whereDate('Dis_Date', $Date)
                         ->from('ems_overview');
@@ -406,7 +415,7 @@ class HomeContentController extends Controller
                     ->get();
                     foreach($ThistimeenergyMIN as $ThistimeenergyMINs )
                     {
-                        $ThistimeenergyMIN = $ThistimeenergyMINs->Apf;
+                        $ThistimeenergyMIN1 = $ThistimeenergyMINs->Apf;
                     }    
             $ThistimeenergyMAX = DB::table('ems_overview')
                     ->where('C_ID','=',Auth::user()->C_ID)
@@ -421,9 +430,15 @@ class HomeContentController extends Controller
                     ->get();
                     foreach($ThistimeenergyMAX as $ThistimeenergyMAXs )
                     {
-                        $ThistimeenergyMAX = $ThistimeenergyMAXs->Apf;
-                    }    
-            $Totalenergy = $ThistimeenergyMAX - $ThistimeenergyMIN;
+                        $ThistimeenergyMAX1 = $ThistimeenergyMAXs->Apf;
+                    }
+
+                    
+                    
+                        
+                    
+
+            $Totalenergy = $ThistimeenergyMAX1 - $ThistimeenergyMIN1;
 
             $result[] = array($Name,$Totalenergy);
         }
@@ -463,14 +478,16 @@ class HomeContentController extends Controller
         ->groupBy('Dis_Date')
         ->get();
         // แยกข้อมูลออกจาก Array
+        $MaxApf1 = 0;
+        $MinApf1 = 0;
         foreach($MaxApf as $MaxApfs )
         {
-            $MaxApf = $MaxApfs->total_Apf;
+            $MaxApf1 = $MaxApfs->total_Apf;
         }
         // แยกข้อมูลออกจาก Array
         foreach($MinApf as $MinApfs )
         {
-            $MinApf = $MinApfs->total_Apf;
+            $MinApf1 = $MinApfs->total_Apf;
         }
         // มากสุด - น้อยสุด เพื่อหาพลังงานทั้งหมด
         $Totalenergythisday = $MaxApf - $MinApf;
@@ -539,17 +556,19 @@ class HomeContentController extends Controller
                 ->groupBy('Dis_Date')
                 ->get();
                 // แยกข้อมูลออกจาก Array
+                $MaxApf1 = 0;
+                $MinApf1 = 0;
                 foreach($MaxApf as $MaxApfs )
                 {
-                    $MaxApf = $MaxApfs->total_Apf;
+                    $MaxApf1 = $MaxApfs->total_Apf;
                 }
                 // แยกข้อมูลออกจาก Array
                 foreach($MinApf as $MinApfs )
                 {
-                    $MinApf = $MinApfs->total_Apf;
+                    $MinApf1 = $MinApfs->total_Apf;
                 }
                 // มากสุด - น้อยสุด เพื่อหาพลังงานทั้งหมด
-                $Totalenergythisday[] = $MaxApf - $MinApf;
+                $Totalenergythisday[] = $MaxApf1 - $MinApf1;
 
 
                 $YesterdayDate = Date("Y-m-d", time() - 86400);                                                     //ดึงค่าพลังงานของเมื่อวานออกมา
@@ -586,17 +605,19 @@ class HomeContentController extends Controller
                 ->groupBy('Dis_Date')
                 ->get();
                 // แยกข้อมูลออกจาก Array
+                $MaxApf1 = 0;
+                $MinApf1 = 0;
                 foreach($MaxApf as $MaxApfs )
                 {
-                    $MaxApf = $MaxApfs->total_Apf;
+                    $MaxApf1 = $MaxApfs->total_Apf;
                 }
                 // แยกข้อมูลออกจาก Array
                 foreach($MinApf as $MinApfs )
                 {
-                    $MinApf = $MinApfs->total_Apf;
+                    $MinApf1 = $MinApfs->total_Apf;
                 }
                 // มากสุด - น้อยสุด เพื่อหาพลังงานทั้งหมด
-                $Totalenergyyesterday[] = $MaxApf - $MinApf;
+                $Totalenergyyesterday[] = $MaxApf1 - $MinApf1;
         }
         return Response::json([                                                                                        //ส่งกลับข้อมูลทั้ง 3 ตัวแปลกลับไปตามที่ Reauest มา
             'Name' => $Name,

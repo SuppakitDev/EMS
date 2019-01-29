@@ -53,7 +53,7 @@
     }
     }
 </style>   
-<div class=" d-block w-80" style="margin-top:2%;margin-left:2%;margin-right:2%;margin-bottom:2%;height:50%;">
+<div class=" d-block w-80" style="margin-top:2%;margin-left:2%;margin-right:2%;margin-bottom:2%;">
 <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item active ">
@@ -94,6 +94,7 @@
       @endforeach
       </tbody>
     </table>
+    {!! $DisplayInfo[$i]->render() !!}
         </div>
 @endfor
     </div>

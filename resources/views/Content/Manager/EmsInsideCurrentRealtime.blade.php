@@ -51,7 +51,7 @@ $('#gotohome').click(function() {
 $.getJSON('/EmsgetCurrentRealtime?Dept_ID={{$Dept_ID}}', function(data){
     var RealtimeCurrent = new Highcharts.chart('container', {
     chart: {
-        type: 'area',
+        type: 'line',
         zoomType: 'x',
         
     },

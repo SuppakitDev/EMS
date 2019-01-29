@@ -87,20 +87,22 @@ class ElectricityChargeController extends Controller
                     ->Select(DB::raw('SUM(Apf) as total_Apf'))
                     ->groupBy('Dis_Date')
                     ->get();
+                    $MaxApf1 = 0;
+                    $MinApf1 = 0;
                     // แยกข้อมูลออกจาก Array
                     foreach($MaxApf as $MaxApfs )
                     {
-                        $MaxApf = $MaxApfs->total_Apf;
+                        $MaxApf1 = $MaxApfs->total_Apf;
                     }
                     // แยกข้อมูลออกจาก Array
                     foreach($MinApf as $MinApfs )
                     {
-                        $MinApf = $MinApfs->total_Apf;
+                        $MinApf1 = $MinApfs->total_Apf;
                     }
                     // มากสุด - น้อยสุด เพื่อหาพลังงานทั้งหมด
-                    $Totalenergythisday[] = number_format(($MaxApf - $MinApf),2);
-                    $Charge[] = number_format((($MaxApf - $MinApf)*$Money_rate),2);
-                    $Chargebuf[] = ($MaxApf - $MinApf)*$Money_rate;
+                    $Totalenergythisday[] = number_format(($MaxApf1 - $MinApf1),2);
+                    $Charge[] = number_format((($MaxApf1 - $MinApf1)*$Money_rate),2);
+                    $Chargebuf[] = ($MaxApf1 - $MinApf1)*$Money_rate;
                     $DeptName[] = $Departments->Dept_Name;
 
                     $SumEnergy = number_format(array_sum($Totalenergythisday),2);
@@ -207,20 +209,22 @@ class ElectricityChargeController extends Controller
                     ->Select(DB::raw('SUM(Apf) as total_Apf'))
                     ->groupBy('Dis_Date')
                     ->get();
+                    $MaxApf1 = 0;
+                    $MinApf1 = 0;
                     // แยกข้อมูลออกจาก Array
                     foreach($MaxApf as $MaxApfs )
                     {
-                        $MaxApf = $MaxApfs->total_Apf;
+                        $MaxApf1 = $MaxApfs->total_Apf;
                     }
                     // แยกข้อมูลออกจาก Array
                     foreach($MinApf as $MinApfs )
                     {
-                        $MinApf = $MinApfs->total_Apf;
+                        $MinApf1 = $MinApfs->total_Apf;
                     }
                     // มากสุด - น้อยสุด เพื่อหาพลังงานทั้งหมด
-                    $Totalenergythisday[] = number_format(($MaxApf - $MinApf),2);
-                    $Charge[] = number_format((($MaxApf - $MinApf)*$Money_rate),2);
-                    $Chargebuf[] = ($MaxApf - $MinApf)*$Money_rate;
+                    $Totalenergythisday[] = number_format(($MaxApf1 - $MinApf1),2);
+                    $Charge[] = number_format((($MaxApf1 - $MinApf1)*$Money_rate),2);
+                    $Chargebuf[] = ($MaxApf1 - $MinApf1)*$Money_rate;
                     $DeptName[] = $Departments->Dept_Name;
 
                     $SumEnergy = number_format(array_sum($Totalenergythisday),2);

@@ -132,17 +132,19 @@ class EMSYearlyController extends Controller
                 ->groupBy('Dis_Date')
                 ->get();
                 // แยกข้อมูลออกจาก Array
+                $MaxApf1 = 0;
+                $MinApf1 = 0;
                 foreach($MaxApf as $MaxApfs )
                 {
-                    $MaxApf = $MaxApfs->total_Apf;
+                    $MaxApf1 = $MaxApfs->total_Apf;
                 }
                 // แยกข้อมูลออกจาก Array
                 foreach($MinApf as $MinApfs )
                 {
-                    $MinApf = $MinApfs->total_Apf;
+                    $MinApf1 = $MinApfs->total_Apf;
                 }
                 // มากสุด - น้อยสุด เพื่อหาพลังงานทั้งหมด
-                $Totalenergythisday[] = $MaxApf - $MinApf;
+                $Totalenergythisday[] = $MaxApf1 - $MinApf1;
 
 
                 $LastYear = date('Y',strtotime("-1 year"));
@@ -182,17 +184,19 @@ class EMSYearlyController extends Controller
                 ->groupBy('Dis_Date')
                 ->get();
                 // แยกข้อมูลออกจาก Array
+                $MaxApf1 = 0;
+                $MinApf1 = 0;
                 foreach($MaxApf as $MaxApfs )
                 {
-                    $MaxApf = $MaxApfs->total_Apf;
+                    $MaxApf1 = $MaxApfs->total_Apf;
                 }
                 // แยกข้อมูลออกจาก Array
                 foreach($MinApf as $MinApfs )
                 {
-                    $MinApf = $MinApfs->total_Apf;
+                    $MinApf1 = $MinApfs->total_Apf;
                 }
                 // มากสุด - น้อยสุด เพื่อหาพลังงานทั้งหมด
-                $Totalenergyyesterday[] = $MaxApf - $MinApf;
+                $Totalenergyyesterday[] = $MaxApf1 - $MinApf1;
         }
         return Response::json([                                                                                        //ส่งกลับข้อมูลทั้ง 3 ตัวแปลกลับไปตามที่ Reauest มา
             'Name' => $Name,
@@ -293,17 +297,19 @@ class EMSYearlyController extends Controller
         ->groupBy('Dis_Date')
         ->get();
         // แยกข้อมูลออกจาก Array
+        $MaxApf1 = 0;
+        $MinApf1 = 0;
         foreach($MaxApf as $MaxApfs )
         {
-            $MaxApf = $MaxApfs->total_Apf;
+            $MaxApf1 = $MaxApfs->total_Apf;
         }
         // แยกข้อมูลออกจาก Array
         foreach($MinApf as $MinApfs )
         {
-            $MinApf = $MinApfs->total_Apf;
+            $MinApf1 = $MinApfs->total_Apf;
         }
         // มากสุด - น้อยสุด เพื่อหาพลังงานทั้งหมด
-        $TotalenergythisMonth = $MaxApf - $MinApf;
+        $TotalenergythisMonth = $MaxApf1 - $MinApf1;
         return Response::json($TotalenergythisMonth, 200, [], JSON_NUMERIC_CHECK);
     }
 
@@ -418,17 +424,19 @@ class EMSYearlyController extends Controller
         ->groupBy('Dis_Date')
         ->get();
         // แยกข้อมูลออกจาก Array
+        $MaxApf1 = 0;
+        $MinApf1 = 0;
         foreach($MaxApf as $MaxApfs )
         {
-            $MaxApf = $MaxApfs->total_Apf;
+            $MaxApf1 = $MaxApfs->total_Apf;
         }
         // แยกข้อมูลออกจาก Array
         foreach($MinApf as $MinApfs )
         {
-            $MinApf = $MinApfs->total_Apf;
+            $MinApf1 = $MinApfs->total_Apf;
         }
         // มากสุด - น้อยสุด เพื่อหาพลังงานทั้งหมด
-        $TotalenergythisMonth = $MaxApf - $MinApf;
+        $TotalenergythisMonth = $MaxApf1 - $MinApf1;
         return Response::json($TotalenergythisMonth, 200, [], JSON_NUMERIC_CHECK);
     }
 }

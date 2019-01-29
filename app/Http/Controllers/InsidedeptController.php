@@ -89,17 +89,19 @@ class InsidedeptController extends Controller
         ->groupBy('Dis_Date')
         ->get();
         // แยกข้อมูลออกจาก Array
+        $MaxApf1 = 0;
+        $MinApf1 = 0;
         foreach($MaxApf as $MaxApfs )
         {
-            $MaxApf = $MaxApfs->total_Apf;
+            $MaxApf1 = $MaxApfs->total_Apf;
         }
         // แยกข้อมูลออกจาก Array
         foreach($MinApf as $MinApfs )
         {
-            $MinApf = $MinApfs->total_Apf;
+            $MinApf1 = $MinApfs->total_Apf;
         }
         // มากสุด - น้อยสุด เพื่อหาพลังงานทั้งหมด
-        $TotalInsideenergythisday = $MaxApf - $MinApf;
+        $TotalInsideenergythisday = $MaxApf1 - $MinApf1;
 
         $Realtimepower = DB::table('ems_overview')
         ->where('C_ID','=',Auth::user()->C_ID)
@@ -192,17 +194,19 @@ class InsidedeptController extends Controller
         ->groupBy('Dis_Date')
         ->get();
         // แยกข้อมูลออกจาก Array
+        $MaxApf1 = 0;
+        $MinApf1 = 0;
         foreach($MaxApf as $MaxApfs )
         {
-            $MaxApf = $MaxApfs->total_Apf;
+            $MaxApf1 = $MaxApfs->total_Apf;
         }
         // แยกข้อมูลออกจาก Array
         foreach($MinApf as $MinApfs )
         {
-            $MinApf = $MinApfs->total_Apf;
+            $MinApf1 = $MinApfs->total_Apf;
         }
         // มากสุด - น้อยสุด เพื่อหาพลังงานทั้งหมด
-        $TotalInsideenergythismonth = $MaxApf - $MinApf;
+        $TotalInsideenergythismonth = $MaxApf1 - $MinApf1;
 
         $Realtimepower = DB::table('ems_overview')
         ->where('C_ID','=',Auth::user()->C_ID)
@@ -296,17 +300,19 @@ class InsidedeptController extends Controller
         ->groupBy('Dis_Date')
         ->get();
         // แยกข้อมูลออกจาก Array
+        $MaxApf1 = 0;
+        $MinApf1 = 0;
         foreach($MaxApf as $MaxApfs )
         {
-            $MaxApf = $MaxApfs->total_Apf;
+            $MaxApf1 = $MaxApfs->total_Apf;
         }
         // แยกข้อมูลออกจาก Array
         foreach($MinApf as $MinApfs )
         {
-            $MinApf = $MinApfs->total_Apf;
+            $MinApf1 = $MinApfs->total_Apf;
         }
         // มากสุด - น้อยสุด เพื่อหาพลังงานทั้งหมด
-        $TotalInsideenergythismonth = $MaxApf - $MinApf;
+        $TotalInsideenergythismonth = $MaxApf1 - $MinApf1;
 
         $Realtimepower = DB::table('ems_overview')
         ->where('C_ID','=',Auth::user()->C_ID)
@@ -752,6 +758,7 @@ class InsidedeptController extends Controller
         ->selectRaw('(UNIX_TIMESTAMP(Dis_Date))*1000 AS x , Vrms1 as y')
         ->OrderBy('x')
         ->get();
+        
     $RealtimeVoltage2 = DB::table('ems_info')
         ->where('C_ID','=',$C_ID)
         ->where('D_ID','=' ,$Dept_ID)
@@ -793,7 +800,7 @@ class InsidedeptController extends Controller
         $C_ID = Auth::user()->C_ID;
         $Dept_ID = Input::get('Dept_ID');
         $currentDate = Date("Y-m-d");
-
+        
             $RealtimeCurrent1 = DB::table('ems_info')
                 ->where('C_ID','=',$C_ID)
                 ->where('D_ID','=' ,$Dept_ID)
@@ -801,6 +808,7 @@ class InsidedeptController extends Controller
                 ->selectRaw('(UNIX_TIMESTAMP(Dis_Date))*1000 AS x , Irms1 as y')
                 ->OrderBy('x')
                 ->get();
+            
             $RealtimeCurrent2 = DB::table('ems_info')
                 ->where('C_ID','=',$C_ID)
                 ->where('D_ID','=' ,$Dept_ID)

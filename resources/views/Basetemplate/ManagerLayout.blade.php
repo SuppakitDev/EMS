@@ -92,7 +92,7 @@
                     @endforeach
                   </ul>
                 </li>
-                <li><a href="EmsInformation">Information</a></li>
+                <li><a href="/EmsInformation">Information</a></li>
                 <li>
                   <a href="##" >{{ Auth::user()->Fname }}</a>
                   <ul>

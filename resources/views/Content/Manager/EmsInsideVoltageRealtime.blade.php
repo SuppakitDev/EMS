@@ -51,7 +51,7 @@ $('#gotohome').click(function() {
 $.getJSON('/EmsgetVoltageRealtime?Dept_ID={{$Dept_ID}}', function(data){
     var RealtimeVoltage = new Highcharts.chart('container', {
     chart: {
-        type: 'area',
+        type: 'line',
         zoomType: 'x',
         
     },

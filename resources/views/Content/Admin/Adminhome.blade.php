@@ -26,7 +26,7 @@
 <script>
 
 // Initiate the chart
-$.getJSON('http://192.168.13.57/PointmapAPI', function (json) {
+$.getJSON('http://192.168.13.57:8000/PointmapAPI', function (json) {
     var data = [];
     $.each(json, function () {
         this.z = this.population;

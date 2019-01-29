@@ -131,7 +131,7 @@
     <section style="width:100%;margin-top:2%;">
         <div class="line text-center">
           <i class="icon-sli-screen-desktop text-primary text-size-30"></i>
-          <h2 class="text-dark text-size-30 text-m-size-40"><b>1-RND/ENG1 Detail</b></h2>
+          <h2 class="text-dark text-size-30 text-m-size-40"><b>{{$Deptdetailname}} Detail</b></h2>
           <div class="row" style="width:25%;margin:auto;">
             <div class="col-6">
                 <button type="button" onclick="window.open('/VoltageRealtime?Dept_ID={{$DeptdetailID}}&Dept_Name={{$Deptdetailname}}')"  class="btn btn-info btn-sm">Voltage real-time</button>
@@ -297,7 +297,7 @@
                             data.forEach(function(value) {
                                 document.getElementById("String1Index0").innerHTML = value.Ln1;
                                 document.getElementById("String1Index1").innerHTML =  "<h4><b>Power : </b>"+" "+value.Pof1/1000+" kW</h4>";
-                                document.getElementById("String1Index2").innerHTML =  "<h4><b>V : </b>"+" "+value.Vrms1/1000+" V</h4>";
+                                document.getElementById("String1Index2").innerHTML =  "<h4><b>V : </b>"+" "+value.Vrms1/100+" V</h4>";
                                 document.getElementById("String1Index3").innerHTML =  "<h4><b>I : </b>"+" "+value.Irms1/1000+" I</h4>";
                                 document.getElementById("String1Index4").innerHTML =  "<h4><b>PF : </b>"+" "+value.PF1/1000+"</h4>";
                         
@@ -315,7 +315,7 @@
                             data.forEach(function(value) {
                                 document.getElementById("String2Index0").innerHTML = value.Ln2;
                                 document.getElementById("String2Index1").innerHTML =  "<h4><b>Power : </b>"+" "+value.Pof2/1000+" kW</h4>";
-                                document.getElementById("String2Index2").innerHTML =  "<h4><b>V : </b>"+" "+value.Vrms2/1000+" V</h4>";
+                                document.getElementById("String2Index2").innerHTML =  "<h4><b>V : </b>"+" "+value.Vrms2/100+" V</h4>";
                                 document.getElementById("String2Index3").innerHTML =  "<h4><b>I : </b>"+" "+value.Irms2/1000+" I</h4>";
                                 document.getElementById("String2Index4").innerHTML =  "<h4><b>PF : </b>"+" "+value.PF2/1000+"</h4>";
                         
@@ -333,7 +333,7 @@
                             data.forEach(function(value) {
                                 document.getElementById("String3Index0").innerHTML = value.Ln3;
                                 document.getElementById("String3Index1").innerHTML =  "<h4><b>Power : </b>"+" "+value.Pof3/1000+" kW</h4>";
-                                document.getElementById("String3Index2").innerHTML =  "<h4><b>V : </b>"+" "+value.Vrms3/1000+" V</h4>";
+                                document.getElementById("String3Index2").innerHTML =  "<h4><b>V : </b>"+" "+value.Vrms3/100+" V</h4>";
                                 document.getElementById("String3Index3").innerHTML =  "<h4><b>I : </b>"+" "+value.Irms3/1000+" I</h4>";
                                 document.getElementById("String3Index4").innerHTML =  "<h4><b>PF : </b>"+" "+value.PF3/1000+"</h4>";
                         
@@ -351,7 +351,7 @@
                             data.forEach(function(value) {
                                 document.getElementById("String4Index0").innerHTML = value.Ln4;
                                 document.getElementById("String4Index1").innerHTML =  "<h4><b>Power : </b>"+" "+value.Pof4/1000+" kW</h4>";
-                                document.getElementById("String4Index2").innerHTML =  "<h4><b>V : </b>"+" "+value.Vrms4/1000+" V</h4>";
+                                document.getElementById("String4Index2").innerHTML =  "<h4><b>V : </b>"+" "+value.Vrms4/100+" V</h4>";
                                 document.getElementById("String4Index3").innerHTML =  "<h4><b>I : </b>"+" "+value.Irms4/1000+" I</h4>";
                                 document.getElementById("String4Index4").innerHTML =  "<h4><b>PF : </b>"+" "+value.PF4/1000+"</h4>";
                         
@@ -369,7 +369,7 @@
                             data.forEach(function(value) {
                                 document.getElementById("String5Index0").innerHTML = value.Ln5;
                                 document.getElementById("String5Index1").innerHTML =  "<h4><b>Power : </b>"+" "+value.Pof5/1000+" kW</h4>";
-                                document.getElementById("String5Index2").innerHTML =  "<h4><b>V : </b>"+" "+value.Vrms5/1000+" V</h4>";
+                                document.getElementById("String5Index2").innerHTML =  "<h4><b>V : </b>"+" "+value.Vrms5/100+" V</h4>";
                                 document.getElementById("String5Index3").innerHTML =  "<h4><b>I : </b>"+" "+value.Irms5/1000+" I</h4>";
                                 document.getElementById("String5Index4").innerHTML =  "<h4><b>PF : </b>"+" "+value.PF5/1000+"</h4>";
                         
@@ -392,7 +392,7 @@
                             data.forEach(function(value) {
                                 document.getElementById("String1Index0").innerHTML = value.Ln1;
                                 document.getElementById("String1Index1").innerHTML =  "<h4><b>Power : </b>"+" "+value.Pof1/1000+" kW</h4>";
-                                document.getElementById("String1Index2").innerHTML =  "<h4><b>V : </b>"+" "+value.Vrms1/1000+" V</h4>";
+                                document.getElementById("String1Index2").innerHTML =  "<h4><b>V : </b>"+" "+value.Vrms1/100+" V</h4>";
                                 document.getElementById("String1Index3").innerHTML =  "<h4><b>I : </b>"+" "+value.Irms1/1000+" I</h4>";
                                 document.getElementById("String1Index4").innerHTML =  "<h4><b>PF : </b>"+" "+value.PF1/1000+"</h4>";
                         
@@ -411,7 +411,7 @@
                             data.forEach(function(value) {
                                 document.getElementById("String2Index0").innerHTML = value.Ln2;
                                 document.getElementById("String2Index1").innerHTML =  "<h4><b>Power : </b>"+" "+value.Pof2/1000+" kW</h4>";
-                                document.getElementById("String2Index2").innerHTML =  "<h4><b>V : </b>"+" "+value.Vrms2/1000+" V</h4>";
+                                document.getElementById("String2Index2").innerHTML =  "<h4><b>V : </b>"+" "+value.Vrms2/100+" V</h4>";
                                 document.getElementById("String2Index3").innerHTML =  "<h4><b>I : </b>"+" "+value.Irms2/1000+" I</h4>";
                                 document.getElementById("String2Index4").innerHTML =  "<h4><b>PF : </b>"+" "+value.PF2/1000+"</h4>";
                         
@@ -430,7 +430,7 @@
                             data.forEach(function(value) {
                                 document.getElementById("String3Index0").innerHTML = value.Ln3;
                                 document.getElementById("String3Index1").innerHTML =  "<h4><b>Power : </b>"+" "+value.Pof3/1000+" kW</h4>";
-                                document.getElementById("String3Index2").innerHTML =  "<h4><b>V : </b>"+" "+value.Vrms3/1000+" V</h4>";
+                                document.getElementById("String3Index2").innerHTML =  "<h4><b>V : </b>"+" "+value.Vrms3/100+" V</h4>";
                                 document.getElementById("String3Index3").innerHTML =  "<h4><b>I : </b>"+" "+value.Irms3/1000+" I</h4>";
                                 document.getElementById("String3Index4").innerHTML =  "<h4><b>PF : </b>"+" "+value.PF3/1000+"</h4>";
                         
@@ -449,7 +449,7 @@
                             data.forEach(function(value) {
                                 document.getElementById("String4Index0").innerHTML = value.Ln4;
                                 document.getElementById("String4Index1").innerHTML =  "<h4><b>Power : </b>"+" "+value.Pof4/1000+" kW</h4>";
-                                document.getElementById("String4Index2").innerHTML =  "<h4><b>V : </b>"+" "+value.Vrms4/1000+" V</h4>";
+                                document.getElementById("String4Index2").innerHTML =  "<h4><b>V : </b>"+" "+value.Vrms4/100+" V</h4>";
                                 document.getElementById("String4Index3").innerHTML =  "<h4><b>I : </b>"+" "+value.Irms4/1000+" I</h4>";
                                 document.getElementById("String4Index4").innerHTML =  "<h4><b>PF : </b>"+" "+value.PF4/1000+"</h4>";
                         
@@ -468,7 +468,7 @@
                             data.forEach(function(value) {
                                 document.getElementById("String5Index0").innerHTML = value.Ln5;
                                 document.getElementById("String5Index1").innerHTML =  "<h4><b>Power : </b>"+" "+value.Pof5/1000+" kW</h4>";
-                                document.getElementById("String5Index2").innerHTML =  "<h4><b>V : </b>"+" "+value.Vrms5/1000+" V</h4>";
+                                document.getElementById("String5Index2").innerHTML =  "<h4><b>V : </b>"+" "+value.Vrms5/100+" V</h4>";
                                 document.getElementById("String5Index3").innerHTML =  "<h4><b>I : </b>"+" "+value.Irms5/1000+" I</h4>";
                                 document.getElementById("String5Index4").innerHTML =  "<h4><b>PF : </b>"+" "+value.PF5/1000+"</h4>";
                         

@@ -23,7 +23,14 @@ class EmsInformationController extends Controller
         $Building = DB::table('building')
                     ->where('C_ID','=',Auth::user()->C_ID)
                     ->get();
-
+        $Money_rate = DB::table('client_company')
+                    ->where('id','=',Auth::user()->C_ID)
+                    ->select('Money_rate')
+                    ->get();
+                    foreach($Money_rate as $Money_rates )
+                    {
+                        $Money_rate = $Money_rates->Money_rate;
+                    }
         $Buildlist = DB::table('building')
         ->where('C_ID','=',Auth::user()->C_ID)
         ->select('id','Build_Name')
@@ -37,12 +44,14 @@ class EmsInformationController extends Controller
             $DisplayInfo[] = DB::table('display_info')
             ->where('C_ID','=',Auth::user()->C_ID)
             ->where('B_ID','=',$ID)
-            ->get();
+            ->Paginate(10);
+            // ->get();
         }
        
         return view("Content.Manager.Information",[
             'DisplayInfo' => $DisplayInfo,
             'Name' => $Name,
+            'Money_rate' => $Money_rate,
             'Building' => $Building,
             'Department' => $Department,
         ]);

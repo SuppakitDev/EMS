@@ -27,7 +27,7 @@
                 <i class="icon-sli-book-open text-primary text-size-30 text-line-height-1"></i>
               </div>
               <div >
-                <h3 class="text-strong text-size-20 text-line-height-1 margin-bottom-20">Information to day.</h3>
+                <h3 class="text-strong text-size-20 text-line-height-1 margin-bottom-20">Information Today.</h3>
                 <div class="row" style="margin-top:2%;margin-left:4%;margin-right:4%">
                     <div class="col-md-3">
                         <p id="EMSGetThisYearenergyOverview" style="text-align:center;color:#02BEC4;font-weight: bold;">{{$TotalenergythisMonth}} Unit</p>
